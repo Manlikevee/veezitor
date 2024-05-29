@@ -12,7 +12,7 @@ import Visitationbar from '../navigations/Visitationbar';
 
 const Dashboardlayout = ({children}) => {
   const [showModal, setShowModal] = useState(false);
-  const {companySetup, fetchvisitors, logo, acceptvisitor, loadingaccept,    axiosInstance,  loading, error, fetchCompanySetup, visitationdata, sideloading, refreshAccessToken, checkusername, isSidebarOpen, isOverlayOpen, toggleSidebar, setIsOverlayOpen, setIsSidebarOpen, isvisitorbaropen, setisVistorbaropen, togglevisitorbar } = useContext(VeeContext);
+  const {companySetup, fetchvisitors, setVisitationdata, logo, acceptvisitor, loadingaccept,    axiosInstance,  loading, error, fetchCompanySetup, visitationdata, sideloading, refreshAccessToken, checkusername, isSidebarOpen, isOverlayOpen, toggleSidebar, setIsOverlayOpen, setIsSidebarOpen, isvisitorbaropen, setisVistorbaropen, togglevisitorbar } = useContext(VeeContext);
   const isAuthenticated = Cookies.get('access_token');
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -87,7 +87,7 @@ const Dashboardlayout = ({children}) => {
     <div className={`container myheight ${loading && 'shimmers'}`}>
 
          <Sidenav  mylogo={logo} />
-         <Visitationbar  fetchvisitors={fetchvisitors}  axiosInstance={axiosInstance}  acceptvisitor={acceptvisitor} loadingaccept={loadingaccept}   togglevisitorbar={togglevisitorbar} visitationdata={visitationdata}  sideloading={sideloading} isvisitorbaropen={isvisitorbaropen} setisVistorbaropen={setisVistorbaropen} />
+         <Visitationbar  fetchvisitors={fetchvisitors} setVisitationdata={setVisitationdata}  axiosInstance={axiosInstance}  acceptvisitor={acceptvisitor} loadingaccept={loadingaccept}   togglevisitorbar={togglevisitorbar} visitationdata={visitationdata}  sideloading={sideloading} isvisitorbaropen={isvisitorbaropen} setisVistorbaropen={setisVistorbaropen} />
          <div className="mydata">
           
           <Topnav toggle={toggleSidebar} fullscreen={toggleFullscreen} mylogo={logo} />

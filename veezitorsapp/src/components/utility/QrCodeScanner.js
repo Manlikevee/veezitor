@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { toast } from 'sonner';
 
-const QrCodeScanner = ({handleQrscanner, myref, axiosInstance, visitorsname, fetchvisitors}) => {
+const QrCodeScanner = ({handleQrscanner, myref, axiosInstance, visitorsname, fetchvisitors, setVisitationdata}) => {
     const scannerRef = useRef(null);
     const [scanResult, setScanResult] = useState(null);
     const [scanError, setScanError] = useState(null);
@@ -83,6 +83,7 @@ useEffect(() => {
      
         toast.info(response?.data?.message);
         if(response.data.available){
+          setVisitationdata(response.data?.visitorsdata);
           handleQrscanner();
           fetchvisitors();
           scanner.clear();

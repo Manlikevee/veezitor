@@ -99,15 +99,17 @@ if (ref){
          };
    
          // Define endpoint
-         const endpoint = 'https://veezitorbackend.vercel.app/acceptvisitor';
+         const endpoint = '/acceptvisitor';
          
          // Make the POST request
-         const response = await axios.post(endpoint, payload);
+         const response = await axiosInstance.post(endpoint, payload);
    
          if (response.status === 200) {
            console.log('response', response);
     
            toast.success('Visitation details updated successfully');
+           setVisitationdata(response.data?.visitorsdata);
+           setVisitors(response.data?.visitorserializer);
          }
          setloadingaccept(false);
          togglevisitorbar('close');

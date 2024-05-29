@@ -11,7 +11,7 @@ const DynamicQrCodeScanner  = dynamic(() => import('../utility/QrCodeScanner'), 
   ssr: false,
 });
 const Visitationbar = ({fetchvisitors, isvisitorbaropen, axiosInstance, visitationdata, setisVistorbaropen, togglevisitorbar, sideloading, acceptvisitor,
-  loadingaccept}) => {
+  loadingaccept, setVisitationdata}) => {
 
     useEffect(() => {
       const timeAgo = new TimeAgo('en-US');
@@ -40,7 +40,7 @@ const Visitationbar = ({fetchvisitors, isvisitorbaropen, axiosInstance, visitati
     <div className={`slidingovl ${isvisitorbaropen ? 'open' : ''} ${sideloading ? 'shimmers' : ''}`}>
 
 <div className={`mysides  ${isvisitorbaropen ? 'open' : ''}`} id="sides">
-{showQrscanner && visitationdata.ref  && <DynamicQrCodeScanner fetchvisitors={fetchvisitors} visitorsname={visitationdata.first_name + ' ' + visitationdata.last_name} axiosInstance={axiosInstance} handleQrscanner={handleQrscanner} myref={visitationdata?.ref} />}  
+{showQrscanner && visitationdata.ref  && <DynamicQrCodeScanner fetchvisitors={fetchvisitors} setVisitationdata={setVisitationdata} visitorsname={visitationdata.first_name + ' ' + visitationdata.last_name} axiosInstance={axiosInstance} handleQrscanner={handleQrscanner} myref={visitationdata?.ref} />}  
  
   <div className="jc">
     <h3 className="sectiontitle">Visitor Information</h3>
@@ -105,6 +105,8 @@ const Visitationbar = ({fetchvisitors, isvisitorbaropen, axiosInstance, visitati
       </small>
     </div>
   </div>
+
+
   <div className="bftag">
     <div className="bficon pi">
       <span className="material-symbols-outlined">more_vert</span>
