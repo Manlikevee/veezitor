@@ -1,0 +1,32 @@
+{
+  "name": "veezitorsapp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@netlify/plugin-nextjs": "^5.2.2",
+    "axios": "^1.6.8",
+    "html5-qrcode": "^2.3.8",
+    "intl-dateformatter": "^1.4.7",
+    "intl-tel-input": "^23.0.4",
+    "javascript-time-ago": "^2.5.10",
+    "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
+    "material-symbols": "^0.17.4",
+    "next": "14.2.3",
+    "qr-code-styling": "^1.6.0-rc.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-paystack": "^5.0.0",
+    "sonner": "^1.4.41"
+  }
+}

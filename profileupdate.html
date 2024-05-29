@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VEEzitor</title>
+    <link rel="stylesheet" href="vtoast.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,200,0,0"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div
+      class="overlay"
+      id="ovl"
+      onclick="navtoggle()"
+      style="display: none"
+    ></div>
+    <div class="header veeheader">
+      <div class="searchbar">
+        <!-- <div class="sidebarlogo pagelogo">
+          <img src="InvestmentOneLogo.png" alt="" />
+          VEEZitors
+        </div> -->
+      </div>
+
+      <div class="extraicons">
+        <div class="noti" onclick="navtoggle()">
+          <span class="material-symbols-outlined"> logout
+          </span>
+        </div>
+
+ 
+      </div>
+    </div>
+  
+ 
+      <div class="container flex">
+    <div class="dataprogressone">
+      <div class="sidebarlogo" style="margin: 1px; justify-content: start;">
+        <img src="InvestmentOneLogo.png" alt="">
+  
+    </div>
+      <h2>Company Setup</h2>
+      <p>Take a moment to complete your company profile setup to unlock the full range of features and benefits tailored to enhance your experience. Your complete profile ensures seamless navigation, personalized recommendations, and efficient communication.</p>
+      <!-- <img src="https://www.ansonika.com/wilio/img/info_graphic_1.svg" alt=""> -->
+    </div>
+    <div class="dataprogresstwo loginside">
+
+      <div class="sidebarlogo">
+        <img src="InvestmentOneLogo.png" alt="" />
+        ViZitors
+      </div>
+      <div class="dataprogresscontent">
+        <div id="progressbar" class="ui-progressbar ui-widget ui-widget-content ui-corner-all" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="ui-progressbar-value ui-widget-header ui-corner-left" id="pbar" style="width: 0%;"></div>
+      </div>
+      
+      <div id="multiStepForm">
+          <!-- Step 1 -->
+          <div class="step active-step" id="step1">
+           <small>  1/3</small>
+            <div class="sectiontitle">Please fill with your Company details</div>
+          
+            <div class="loginfrm">
+                <label for="organizationName">Organization Name</label>
+                <div class="inp">
+                    <span class="material-symbols-outlined">corporate_fare
+                    </span>
+                    <input type="text" id="organizationName" name="organizationName">
+                </div>
+            </div>
+        
+            <div class="loginfrm">
+                <label for="organizationType">Organization Type</label>
+                <div class="inp">
+                    <span class="material-symbols-outlined">checklist
+                    </span>
+                    <select id="organizationType" name="organizationType">
+                      <option value="Corporate">Corporate</option>
+            <option value="Non-Profit">Non-Profit</option>
+            <option value="Government">Government</option>
+            <option value="Educational Institution">Educational Institution</option>
+            <option value="Small Business">Small Business</option>
+            <option value="Start-up">Start-up</option>
+            <option value="Partnership">Partnership</option>
+            <option value="Sole Proprietorship">Sole Proprietorship</option>
+            <option value="Franchise">Franchise</option>
+            <option value="Association">Association</option>
+            <option value="Charity">Charity</option>
+            <option value="NGO">NGO (Non-Governmental Organization)</option>
+            <option value="Foundation">Foundation</option>
+            <option value="Cooperative">Cooperative</option>
+            <option value="Professional Services">Professional Services</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Manufacturing">Manufacturing</option>
+            <option value="Technology">Technology</option>
+                    </select>
+                </div>
+            </div>
+        
+            <div class="loginfrm">
+                <label for="websiteURL">Website URL</label>
+                <div class="inp">
+                    <span class="material-symbols-outlined">language</span>
+                    <input type="url" id="websiteURL" name="websiteURL" placeholder="www.example.com">
+                </div>
+            </div>
+        
+            <div class="nstep">
+                <button id="increaseBtn" onclick="increasebtn()">Next</button>
+            </div>
+        </div>
+        
+          <!-- Step 2 -->
+          <div class="step" id="step2">
+            <small>  2/3</small>
+            <div class="sectiontitle">Please fill with your Company Contact details</div>
+          
+            <div class="loginfrm">
+                <label for="contactEmail">Contact Email Address</label>
+                <div class="inp">
+                    <span class="material-symbols-outlined">mail</span>
+                    <input type="email" id="contactEmail" name="contactEmail">
+                </div>
+            </div>
+        
+            <div class="loginfrm">
+                <label for="preferredContact">Preferred Contact Method</label>
+                <div class="inp">
+                    <span class="material-symbols-outlined">person</span>
+                    <select id="preferredContact" name="preferredContact">
+                        <option value="Vendor">Vendor</option>
+                        <option value="Visitor">Visitor</option>
+                    </select>
+                </div>
+            </div>
+        
+            <div class="loginfrm">
+                <label for="address">Address</label>
+                <div class="inp">
+                    <textarea id="address" name="address" cols="30" rows="5"></textarea>
+                </div>
+            </div>
+        
+            <div class="nstep">
+                <button id="decreaseBtn" onclick="decreasebtn()" >Back</button>
+                <button id="increaseBtn" onclick="increasebtn()">Next</button>
+            </div>
+        </div>
+        
+      
+          <!-- Step 3 -->
+          <div class="step " id="step3">
+            <small>  3/3</small>
+            <div class="sectiontitle">Please fill with your Company Contact details</div>
+        
+            <div class="loginfrm">
+                <label for="companyLogo">Company Logo</label>
+                <div class="inp">
+                    <span class="material-symbols-outlined">image</span>
+                    <input type="file" id="companyLogo" name="companyLogo">
+                </div>
+            </div>
+        
+            <div class="loginfrm">
+                <label for="primaryColor">Company Primary Color</label>
+                <div class="inp">
+                    <span class="material-symbols-outlined">palette</span>
+                    <input type="color" id="primaryColor" name="primaryColor" value="#a92f41">
+                </div>
+            </div>
+        
+            <div class="loginfrm">
+                <label for="secondaryColor">Company Secondary Color</label>
+                <div class="inp">
+                    <span class="material-symbols-outlined">palette</span>
+                    <input type="color" id="secondaryColor" name="secondaryColor" value="#a92f41">
+                </div>
+            </div>
+        
+            <div class="nstep">
+                <button id="decreaseBtn" onclick="decreasebtn()" >Back</button>
+                <button id="increaseBtn" onclick="increasebtn()">Proceed</button>
+            </div>
+        </div>
+
+        <div class="step " id="step4">
+          <small>  4/4</small>
+          <div class="sectiontitle">Choose A Plan</div>
+      
+          <div class="radio-card">
+            <input type="radio" id="basic" name="plan" value="basic">
+            <label for="basic">
+              <div>
+                <h3>Basic Plan</h3>
+                <p>Cost: $0.00 per month</p>
+                <p class="subtext">Perfect for individuals or small businesses.</p>
+              </div>
+            </label>
+          </div>
+          
+          <div class="radio-card">
+            <input type="radio" id="premium" name="plan" value="premium">
+            <label for="premium">
+              <div>
+                <h3>Premium Plan</h3>
+                <p>Cost: $50,000 per month</p>
+                <p class="subtext">Ideal for businesses requiring comprehensive reporting.</p>
+              </div>
+            </label>
+          </div>
+      
+
+          <div class="nstep">
+              <button id="decreaseBtn" onclick="decreasebtn()" >Back</button>
+              <button id="increaseBtn" onclick="increasebtn()" >Proceed</button>
+          </div>
+      </div>
+        
+      </div>
+      </div>
+
+    
+
+
+
+    </div>
+
+      </div>
+  
+    
+
+      <script src="https://js.paystack.co/v1/inline.js"></script>
+
+      <script>
+        const progressBar = document.getElementById('pbar');
+        let currentWidth = 0;
+        let step = 1;
+      
+        function increasebtn() {
+          console.log('sssssssssss');
+          if (currentWidth < 100) {
+            validateform();
+          }
+        }
+      
+        function decreasebtn() {
+          if (currentWidth > 0) {
+            currentWidth -= 25;
+            progressBar.style.width = `${currentWidth}%`;
+            removeActiveStepClass()
+            step -= 1
+            document.getElementById(`step${step}`).classList.add('active-step');
+          }
+        }
+      
+        function validateform() {
+          const organizationNameValue = document.getElementById("organizationName").value;
+          const organizationTypeValue = document.getElementById("organizationType").value;
+          const websiteURLValue = document.getElementById("websiteURL").value;
+          const contactEmailValue = document.getElementById("contactEmail").value;
+          const preferredContactValue = document.getElementById("preferredContact").value;
+          const addressValue = document.getElementById("address").value;
+          var basicSelected = document.getElementById('basic').checked;
+          var premiumSelected = document.getElementById('premium').checked;
+          const companyLogoValue = document.getElementById("companyLogo").file; // File input value can't be accessed this way
+          const primaryColorValue = document.getElementById("primaryColor").value;
+          const secondaryColorValue = document.getElementById("secondaryColor").value;
+      
+          if (step === 1) {
+            if (organizationNameValue && organizationTypeValue && websiteURLValue) {
+              currentWidth += 25;
+              removeActiveStepClass();
+              step = 2;
+              document.getElementById(`step${step}`).classList.add('active-step');
+            } else {
+              alert('All fields are required');
+            }
+          } 
+          else if (step === 2) {
+            if (contactEmailValue && preferredContactValue && addressValue) {
+              currentWidth += 25;
+              removeActiveStepClass();
+              step = 3;
+              document.getElementById(`step${step}`).classList.add('active-step');
+            } else {
+              alert('All fields are required');
+            }
+          }
+          else if (step === 3) {
+            if (contactEmailValue && preferredContactValue && addressValue) {
+              currentWidth += 25;
+              removeActiveStepClass();
+              step = 4;
+              document.getElementById(`step${step}`).classList.add('active-step');
+            } else {
+              alert('All fields are required');
+            }
+          }
+          
+          else if (step === 4) {
+            console.log('ssssssssaaaaaaaaaaaaaaaa')
+            if (basicSelected || premiumSelected) {
+
+              if (basicSelected) {
+alert('basic boy')
+  }
+  else if (premiumSelected) {
+    alert('premium boy')
+    let handler = PaystackPop.setup({
+    key: 'pk_test_449489710495ea60cf1fadb303857f546d6e31c6', // Replace with your public key
+    email: 'odahviktor@gmail.com',
+    amount: 200000 * 100,
+    ref: ''+Math.floor((Math.random() * 1000000000) + 1),
+    // label: "Optional string that replaces customer email"
+    onClose: function(){
+      alert('Window closed.');
+    },
+    callback: function(response){
+      let message = 'Payment complete! Reference: ' + response.reference;
+      // currentWidth += 25;
+    }})
+    handler.openIframe();
+  } else {
+ alert('hello please pick')
+  }       
+            } else {
+              alert('All fields are required');
+            }
+          }
+
+          else {
+            alert('I don\'t understand');
+          }
+          progressBar.style.width = `${currentWidth}%`;
+        }
+      
+        function removeActiveStepClass() {
+          // Get all elements with the class 'step'
+          const steps = document.querySelectorAll('.step');
+          // Iterate over each step element and remove the 'active-step' class
+          steps.forEach(step => {
+            step.classList.remove('active-step');
+          });
+        }
+      </script>
+      
+  </body>
+</html>

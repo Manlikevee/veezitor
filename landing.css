@@ -1,0 +1,854 @@
+main{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.landingheader{
+    width: 100%;
+    position: fixed;
+    background-color: white;
+    padding: 10px;
+    z-index: 999;
+    border: 1.05px solid var(--Stroke-3, #D9DEDD);
+
+}
+.faqgrid{
+
+}
+.headerlogo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    gap: 10px;
+    font-weight: 200;
+    font-family: "Shojumaru", system-ui;
+    align-items: center;
+    justify-content: center;
+    color: rgb(84, 53, 5);
+}
+.headerlogo img{
+    width: 85%;
+    height: 85%;
+object-fit: contain;
+}
+.landingcontainer {
+    width: 1250px;
+    margin: auto;
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.landingheader .landingcontainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.landingheader .links {
+    display: flex;
+    gap: 30px;
+    padding-right: 30px;
+}
+
+.landingheader a{
+   text-decoration: none;
+   font-family: Nunito Sans;
+font-size: 15px;
+font-weight: 500;
+line-height: 24px;
+letter-spacing: -0.004em;
+text-align: center;
+color: #022C22;
+
+}
+
+.soltitle{
+    padding-top: 10px;
+
+font-size: 32px;
+font-weight: 500;
+line-height: 48px;
+letter-spacing: -0.03em;
+text-align: left;
+
+}
+.getstarted{
+  
+  
+    border: 1px solid #9A4C1E;
+    padding-inline: 14px;
+    min-width: 90px;
+    padding-block: 6px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.getstarted span{
+    font-size: 18px;
+}
+
+.landinghero{
+    min-height: 100vh;
+
+    display: flex;
+ 
+}
+
+.landingone{
+    width: 100%;
+    background-color: white;
+    display: flex;
+ gap: 10px;
+    justify-content: center;
+flex-direction: column;
+font-family: Nunito Sans;
+}
+.landingaccent{
+color: #1D1F1E;
+font-size: 15px;
+font-weight: 500;
+line-height: 20px;
+letter-spacing: -0.004em;
+text-align: left;
+display: flex;
+align-items: center;
+gap: 7px;
+
+}
+.landingtwo{
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+}
+.ladingtop{
+    font-family: Nunito Sans;
+font-size: 39px;
+font-weight: 800;
+line-height: 50px;
+letter-spacing: -0.05em;
+text-align: left;
+color: #1D1F1E;
+}
+
+.landingbottom{
+    font-family: Nunito Sans;
+font-size: 16px;
+font-weight: 400;
+line-height: 26px;
+letter-spacing: -0.004em;
+text-align: left;
+color: #646A69;
+}
+.landingtwo img{
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.solutions{
+    width: fit-content;
+    min-width: 140px;
+    padding: 10px;
+    border: 1px solid;
+    border-color: #9A4C1E;
+    color: #9A4C1E;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.landingbuttons{
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+    font-family: Nunito Sans;
+   
+}
+.contact{
+    width: fit-content;
+    min-width: 140px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid;
+    background-color:  #9A4C1E;
+    border-color: #9A4C1E;
+    color: white;
+    border-radius: 20px;
+}
+
+
+.partners{
+    margin-top: -20px;
+    border-width: 1px ;
+
+border-style: solid;
+
+border-color: #D9DEDD;
+
+
+}
+
+
+.splits{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-block: 10px;
+}
+
+.splita{
+    width: 40%;
+    font-family: Nunito Sans;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.splitb{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.splitb img{
+    width: 150px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.marq{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.landingdashs{
+    font-family: Nunito Sans;
+    margin-top: 26px;
+    display: grid;
+    align-items: center;
+    gap: 10px;
+width: 100%;
+grid-auto-rows: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.ldashcard{
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ltop{
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.03em;
+    text-align: center;
+    
+}
+.visitorsolution{
+    background-color: Beige;
+    padding: 30px;
+}
+.lbottom{
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: -0.004em;
+    text-align: center;
+    color: #646A69;
+    
+}
+
+.visitorsolution{
+    font-family: Nunito Sans;
+}
+
+
+.solgrid{
+    font-family: Nunito Sans;
+    margin-top: 26px;
+    display: grid;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+}
+.solutiontitle{
+
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #1D1F1E;
+    
+}
+
+.solbody{
+
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.004em;
+    text-align: left;
+    color: #646A69;
+}
+
+.solcard{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+}
+
+.solimg img{
+    width: 45px;
+    height: fit-content;
+    object-fit: contain;
+}
+
+.howbody{
+    font-family: Nunito Sans;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-image: url('Lines.png');
+background-size: cover;
+background-position: left;
+background-attachment: fixed;
+
+}
+
+.howtext{
+    color: #646A69;
+    font-family: Inter;
+font-size: 17px;
+font-weight: 300;
+line-height: 29px;
+letter-spacing: -0.01em;
+text-align: center;
+
+}
+.vimg{
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.how{
+
+font-size: 44px;
+font-weight: 400;
+line-height: 49px;
+letter-spacing: -0.03em;
+text-align: center;
+
+}
+
+.myteams{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+
+}
+.ovh{
+    overflow: hidden;
+    display: none;
+}
+
+.contacttab{
+    margin-top: 30px;
+    background-color: #022C22;
+
+}
+.myteams {
+    width: 100%; /* Make each section full viewport width */
+    height: 100%;
+    padding: 10px;
+    scroll-snap-align: start;
+    gap: 30px;
+    width: 100%;
+    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    font-size: 2em;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory;
+    overflow-x: hidden;
+
+}
+.teamflx{
+    display: flex;
+}
+.item{
+    display: flex;
+
+ 
+    border: 1px solid red;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.item:first-child {
+    margin-left: 46%
+  }
+.item .itemcard{
+    width: 300px;
+    height: fit-content;
+}
+
+.itemcard img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.whoblock{
+    width: 80%;
+    background-color: orange;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.contactflx{
+    display: flex;
+    width: 100%;
+   
+}
+
+.contactflxtwo{
+    width: 40%;
+    
+}
+.contactflxone{
+    font-family: Nunito Sans;
+    width: 90%;
+    padding: 40px;
+    padding-inline-end: 70px;
+    display: flex;
+justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.cflexonetitle{
+color: white;
+font-size: 36px;
+font-weight: 800;
+line-height: 38px;
+letter-spacing: -0.03em;
+text-align: left;
+
+}
+
+.cflexonebody{
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: -0.004em;
+    text-align: left;
+    color: #FFFFFFCC;
+}
+.contactflx .getstarted{
+    background-color: #BEF264;
+    color: #1D1F1E;
+    border: 1px solid #BEF264;
+    padding: 15px;
+    text-decoration: none;
+    width: fit-content;
+}
+.contactflxtwo img{
+    width: 100%;
+height: 100%;
+    object-fit: cover;
+}
+
+.faqgrid{
+    display: grid;
+    align-items: start;
+    gap: 20px;
+width: 100%;
+grid-auto-rows: auto;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+}
+.basq{
+    background-color: #FFF7ED;
+}
+.faqcard{
+background-color: white;
+padding: 13px;
+display: flex;
+flex-direction: column;
+gap: 4px;
+box-shadow: 0px 0px 0px 1px #12693F14;
+border-radius: 5px;
+box-shadow: 0px 1px 2px 0px #575C5629;
+border: 1px solid #f2f2f2;
+box-shadow: 0px 24px 24px -12px #364A360F;
+height: fit-content;
+}
+
+.faqhead{
+    display: flex;
+    user-select: none;
+    gap: 10px;
+    align-items: center;
+}
+
+.faqquestion{
+    width: 100%;
+    /* font-family: Inter; */
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.004em;
+    text-align: left;
+    color: #1D1F1E;
+}
+.pluscheck{
+    cursor: pointer;
+}
+.faqdescription{
+    width: 100%;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: -0.004em;
+    text-align: left;
+    color: #646A69;
+    height:0px;
+    transition: 0.5s ease-in-out;
+    overflow: hidden;
+}
+.faqshow{
+  height: fit-content;
+}
+
+.diffflx{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    font-family: Nunito Sans;
+}
+.sectxt{
+    width: 100%;
+    font-family: Nunito Sans;
+    font-size: 22px;
+    font-weight: 600;
+    padding-block: 10px;
+    border-bottom: 3px solid #1D1F1E;
+    margin-bottom: 8px;
+}
+.difflxone{
+    width: 100%;
+  flex-direction: column;
+    display: flex;
+    background-color: #FFF7ED;
+    padding: 12px;
+    border-radius: 9px;
+    
+}
+
+.contentsflex{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.contentsflexone{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  
+}
+
+.contentflextwo{
+    width: 30%;
+    padding: 10px;
+  
+}
+
+.contentimg{
+    width: 100%;
+    align-self: flex-end;
+    display: flex;
+    justify-self: flex-end;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-left: auto;
+}
+
+.contentimg img{
+  object-fit: contain;
+  height: 340px;
+  width: max-content;
+}
+
+.badgemodules{
+    display: flex;
+    gap: 10px;
+}
+.badgecontent.active {
+    /* height: 80px; */
+}
+.roundcircle{
+color: #022C22;
+font-family: 900;
+}
+.difflextwo{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 12px;
+    border-radius: 9px;
+    background-color: rgba(222, 184, 135, 0.627);
+}
+.badgetext{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.badgetitle{
+/* font-family: Inter; */
+font-size: 18px;
+font-weight: 600;
+line-height: 24px;
+letter-spacing: -0.01em;
+text-align: start;
+
+}
+.badgecontent{
+    width: 100%;
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.004em;
+    text-align: left;
+    color: #2f2f2f;
+    height:0px;
+    transition: 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.topbadge{
+    background-color: #9A4C1E;
+    color: white;
+    padding: 8px;
+    width: fit-content;
+    min-width: 120px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 14.5px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.004em;
+ 
+}
+@media screen and (max-width: 1300px) {
+    .landingcontainer {
+        width: 97%;
+    }
+}
+
+
+@media screen and (max-width:1000px) {
+    .landingheader .links{
+        display: none;
+    }
+    .diffflx{
+        flex-direction: column;
+    }
+    .landinghero{
+        flex-direction: column;
+        padding-top: 90px;
+    }
+
+    .landingbottom{
+        text-align: center;
+    }
+    .landingbuttons{
+        margin: auto;
+    }
+    .landingtwo img{
+        width: 60%;
+        margin: auto;
+        padding-top: 50px;
+    }
+
+    .landinghero  .landingaccent{
+margin: auto;
+    }
+    .splits{
+        flex-direction: column;
+    }
+    .splita {
+        width: 100%;
+        font-family: Nunito Sans;
+        font-size: 22px;
+        font-weight: 600;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .contactflxtwo{
+        display: none;
+    }
+    .contentimg img {
+        object-fit: contain;
+        height: fit-content;
+        width: max-content;
+    }
+    .contentflextwo{
+        width: 100%;
+        margin: auto;
+    }
+    .contentimg{
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+    }
+    .contentsflex{
+        flex-direction: column;
+    }
+    .faqgrid {
+        display: grid;
+        align-items: start;
+        gap: 20px;
+        width: 100%;
+        grid-auto-rows: auto;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+    .contactflxone{
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        padding-inline-end: 0px;
+    }
+
+    .cflexonebody{
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+    .how {
+        font-size: 27px;
+        font-weight: 400;
+        line-height: 26px;
+        letter-spacing: -0.03em;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .solgrid {
+        display: flex;
+       
+        flex-direction: column;
+    }
+    .contactflxone {
+        font-family: Nunito Sans;
+        width: 100%;
+        padding: 16px;
+
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .soltitle {
+        padding-top: 6px;
+        font-size: 26px;
+        font-weight: 500;
+        line-height: 39px;
+        letter-spacing: -0.03em;
+        text-align: left;
+    }
+    .solutiontitle {
+        font-family: Inter;
+        font-size: 21px;
+        font-weight: 500;
+        line-height: 32px;
+        letter-spacing: -0.01em;
+        text-align: left;
+        color: #1D1F1E;
+    }
+    .faqgrid{
+        display: flex;
+        flex-direction: column;
+    }
+    .cflexonetitle {
+        color: white;
+        font-size: 25px;
+        font-weight: 800;
+        line-height: 38px;
+        letter-spacing: -0.03em;
+        text-align: center;
+    }
+    .landinghero{
+        padding-top: 110px;
+    }
+
+    .visitorsolution {
+        background-color: Beige;
+        padding: 0px;
+    }
+
+    .howtext {
+        color: #646A69;
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 26px;
+        letter-spacing: -0.01em;
+        text-align: center;
+    }
+    .ladingtop {
+        font-family: Nunito Sans;
+        font-size: 30px;
+        font-weight: 800;
+        line-height: 43px;
+        letter-spacing: -0.05em;
+        text-align: center;
+        color: #1D1F1E;
+    }
+    .landingtwo img {
+        width: 80%;
+        margin: auto;
+        padding-top: 50px;
+    }
+    .landingheader {
+        width: 100%;
+        position: fixed;
+        background-color: white;
+        padding: 5px;
+        z-index: 999;
+        border: 1.05px solid var(--Stroke-3, #D9DEDD);
+    }
+}

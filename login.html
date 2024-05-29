@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEEzitor</title>
+        <link rel="stylesheet" href="vtoast.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,200,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container flex">
+<div class="loginside">
+   <div class="logindata">
+
+    <h6>Hi, Welcome Back!</h6>
+    <div class="subt">Streamline your Frontdesk and
+        Keep your Office Safe</div>
+
+    <!-- <div class="samplebtn">
+       <button> <img src="img/Google Icon.png" alt=""> Sign In With Google</button> 
+    </div> -->
+
+    <div class="or">
+        <div class="orline"> <div class="lin"></div> </div>
+        <!-- <div class="ortext">Or</div> -->
+        <div class="orline"><div class="lin"></div></div>
+    </div>
+
+    <div class="loginfrm">
+        <label for="">Email Address</label>
+        <div class="inp">
+            <span class="material-symbols-outlined">
+                mail
+                </span>      <input type="text" id="username" placeholder="Enter Your Username/Email">
+        </div>
+    </div>
+<p></p>
+<div class="loginfrm">
+    <label for="password">Password</label>
+    <div class="inp">
+        <span class="material-symbols-outlined">lock</span>
+        <input type="password" id="password" placeholder="••••••••••••••••••••••">
+        <span class="eye material-symbols-outlined" onclick="togglePasswordVisibility()">
+            visibility
+        </span>
+    </div>
+</div>
+
+    <div class="rem">
+   <div class="rems"></div>
+   <div class="rem">Forgot your password?</div>
+
+
+    </div>
+<p></p>
+        <div class="loginfrm">
+            <button id="submitBtn" onclick="submitLogin()">Submit</button>
+            <button id="loadingBtn" style="display: none;" disabled><i class="fa fa-spinner fa-spin"></i> Loading</button>
+        </div>
+   </div>
+</div>
+<div class="imageside ">
+
+
+    <div class="log">
+        <div class="sidebarlogo" style="margin: 1px; justify-content: start;">
+            <img src="InvestmentOneLogo.png" alt="">
+            Vzitors
+        </div>
+
+        <p>
+            We are pioneers in contactless, cloud-based workspace solutions, delivering smart, secure, and
+modern workplace experiences to companies around the world.
+        </p>
+    </div>
+
+</div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="vtoast.js"></script>
+<script src="script.js"></script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
+
+
+
+
+
+
