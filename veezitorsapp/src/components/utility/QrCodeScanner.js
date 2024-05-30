@@ -83,10 +83,10 @@ useEffect(() => {
      
         toast.info(response?.data?.message);
         if(response.data.available){
-          setVisitationdata(response?.data?.visitorsdata);
           handleQrscanner();
           fetchvisitors();
           scanner.clear();
+          setVisitationdata(response.data.visitorsdata);
         }
 
       } catch (error) {

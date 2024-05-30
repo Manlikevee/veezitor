@@ -10,7 +10,7 @@ TimeAgo.addDefaultLocale(en)
 const DynamicQrCodeScanner  = dynamic(() => import('../utility/QrCodeScanner'), {
   ssr: false,
 });
-const Visitationbar = ({fetchvisitors, isvisitorbaropen, axiosInstance, visitationdata, setisVistorbaropen, togglevisitorbar, sideloading, acceptvisitor,
+const Visitationbar = ({fetchvisitors, signout, isvisitorbaropen, axiosInstance, visitationdata, setisVistorbaropen, togglevisitorbar, sideloading, acceptvisitor,
   loadingaccept, setVisitationdata}) => {
 
     useEffect(() => {
@@ -213,6 +213,17 @@ timeAgo.format(visitationdata?.clock_in ? new Date(visitationdata?.clock_in) : n
 <button onClick={handleQrscanner}>
   <span className="material-symbols-outlined">qr_code_scanner</span>
   Assign Tag
+</button>
+</div>
+
+  ) }
+
+
+{visitationdata?.stage_1 && visitationdata?.stage_2 && visitationdata?.stage_3 && !visitationdata?.stage_4 &&  !loadingaccept && (
+<div className="assigntag grn">
+<button onClick={() => signout(visitationdata?.ref)} >
+  <span className="material-symbols-outlined">qr_code_scanner</span>
+  SignOut
 </button>
 </div>
 

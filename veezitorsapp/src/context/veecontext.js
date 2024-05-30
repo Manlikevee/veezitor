@@ -89,6 +89,9 @@ export const VeeContextProvider = ({ children }) => {
     }
   };
 
+
+
+
  async function acceptvisitor(ref){
 if (ref){
   if (ref !== 'close') {
@@ -437,6 +440,50 @@ if (ref){
     }
   };
 
+  async function signout(ref){
+    if (ref){
+      if (ref !== 'close') {
+        setloadingaccept(true)
+           try {
+             const payload = {
+               post_id: ref,
+             };
+       
+             // Define endpoint
+             const endpoint = '/logoutvisitor';
+             
+             // Make the POST request
+             const response = await axiosInstance.post(endpoint, payload);
+       
+             if (response.status === 200) {
+               console.log('response', response);
+        
+               toast.success('Visitor LoggedOut Successfully');
+               setVisitationdata(response.data?.visitorsdata);
+               fetchvisitors();
+             }
+             setloadingaccept(false);
+             togglevisitorbar('close');
+           } catch (error) {
+             if (error.response) {
+               // Server responded with a status other than 200 range
+               toast.error(error.response.data.error);
+             } else if (error.request) {
+               // Request was made but no response received
+               toast.error('No response received from the server.');
+             } else {
+               // Something else happened in setting up the request
+               toast.error(error.message || 'No response received from the server.');
+             }
+           } finally {
+        
+             setloadingaccept(false);
+           }
+         }
+    }
+    
+      }
+
   useEffect(() => {
     // Filter visitors data into separate variables based on status
     const pendingVisitors = visitors.filter(
@@ -500,6 +547,7 @@ if (ref){
         fetchCompanySetup,
         refreshAccessToken,
         axiosInstance,
+        setVisitationdata,
         plans,
         visitordataloaded,
         awaiting,
@@ -527,7 +575,8 @@ if (ref){
         setsideloading,
         visitationdata,
         acceptvisitor,
-        loadingaccept
+        loadingaccept,
+        signout
       }}
     >
       {children}

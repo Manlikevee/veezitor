@@ -11,11 +11,11 @@ const Qrcard = ({ data }) => {
         const qrCode = new QRCodeStyling(
           {
           width: 290,
-          height: 240,
+          height: 250,
           data: data?.code_tag,
           margin: 0,
-          qrOptions: { typeNumber: "0", mode: "Byte", errorCorrectionLevel: "Q" },
-          imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 0 },
+          qrOptions: { typeNumber: "0", mode: "Byte", errorCorrectionLevel: "l" },
+          imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 3 },
           dotsOptions: { type: "extra-rounded", color: "#9a4c1e" },
           backgroundOptions: { color: "#ffffff" },
           image: logo || 'InvestmentOneLogo.png' ,
