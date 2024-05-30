@@ -14,7 +14,7 @@ const Qrcard = ({ data }) => {
           height: 250,
           data: data?.code_tag,
           margin: 0,
-          qrOptions: { typeNumber: "0", mode: "Byte", errorCorrectionLevel: "l" },
+          qrOptions: { typeNumber: "0", mode: "Byte", errorCorrectionLevel: "L" },
           imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 3 },
           dotsOptions: { type: "extra-rounded", color: "#9a4c1e" },
           backgroundOptions: { color: "#ffffff" },
