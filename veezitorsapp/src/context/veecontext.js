@@ -50,6 +50,15 @@ export const VeeContextProvider = ({ children }) => {
   };
 
 
+  const clearSearchParams = () => {
+    // Get the current URL without query parameters
+    const url = new URL(window.location);
+    url.search = ''; // Clear the query string
+
+    // Use the history API to replace the current entry
+    window.history.replaceState({}, document.title, url.toString());
+  };
+
   const togglevisitorbar = async (ref) => {
     setisVistorbaropen((prevState) => !prevState);
     
@@ -75,7 +84,7 @@ export const VeeContextProvider = ({ children }) => {
       } catch (error) {
         if (error.response) {
           // Server responded with a status other than 200 range
-          toast.error(error.response.data.error);
+          toast.error(error.response.data.message);
         } else if (error.request) {
           // Request was made but no response received
           toast.error('No response received from the server.');
@@ -113,13 +122,14 @@ if (ref){
            toast.success('Visitation details updated successfully');
            setVisitationdata(response.data?.visitorsdata);
            setVisitors(response.data?.visitorserializer);
+           clearSearchParams();
          }
          setloadingaccept(false);
          togglevisitorbar('close');
        } catch (error) {
          if (error.response) {
            // Server responded with a status other than 200 range
-           toast.error(error.response.data.error);
+           toast.error(error.response.data.message);
          } else if (error.request) {
            // Request was made but no response received
            toast.error('No response received from the server.');
@@ -135,6 +145,8 @@ if (ref){
 }
 
   }
+
+
   function checkusername() {
     let accessToken = Cookies.get("access_token");
     if (accessToken) {

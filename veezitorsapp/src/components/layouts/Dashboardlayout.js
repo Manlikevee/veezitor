@@ -87,6 +87,7 @@ const Dashboardlayout = ({children}) => {
     <div className={`container myheight ${loading && 'shimmers'}`}>
 
          <Sidenav  mylogo={logo} />
+         
          <Visitationbar  signout={signout} fetchvisitors={fetchvisitors} setVisitationdata={setVisitationdata}  axiosInstance={axiosInstance}  acceptvisitor={acceptvisitor} loadingaccept={loadingaccept}   togglevisitorbar={togglevisitorbar} visitationdata={visitationdata}  sideloading={sideloading} isvisitorbaropen={isvisitorbaropen} setisVistorbaropen={setisVistorbaropen} />
          <div className="mydata">
           

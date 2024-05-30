@@ -11,26 +11,19 @@ import Visitorstable from "@/components/tables/Visitorstable";
 import Updateprofilemodal from "@/components/utility/Updateprofilemodal";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation'
+import Acceptvisit from "@/components/utility/Acceptvisit";
+const ClearSearchParams = dynamic(() => import('@/components/utility/ClearSearchParams'), { ssr: false });
 
 const page = () => {
-  const {visitordataloaded, isOpen, test, setTest,  fetchvisitors, visitors , awaiting, pendingApproval, reshedule, inProgress, employeedataloaded, togglevisitorbar } = useContext(VeeContext);
+  const {visitordataloaded, isOpen, test, setTest,  fetchvisitors,  acceptvisitor, visitors , awaiting, pendingApproval, reshedule, inProgress, employeedataloaded, togglevisitorbar } = useContext(VeeContext);
   const [firstName, setFirstName] = useState("");
   const [myArray, setMyArray] = useState([]);
   const [activeTag, setActiveTag] = useState("allEmployeesContent");
   const [username, setUsername] = useState("");
 
 
-  // const copyToClipboard = async ({textToCopy}) => {
-  //   try {
-  //     await navigator.clipboard.writeText(textToCopy);
- 
-  //   } catch (err) {
-  
-  //   }
-
-  //   // Reset the message after a short delay
-
-  // };
 
   const copyToClipboard = async () => {
 
@@ -81,6 +74,7 @@ const page = () => {
 
   return (
     <Dashboardlayout>
+      <Acceptvisit togglevisitorbar={togglevisitorbar} acceptvisitor={acceptvisitor}  />
       {/* <Updateprofilemodal/> */}
       <div className="sectionheader">
         <div className="sectiontitle col">
@@ -103,6 +97,7 @@ const page = () => {
               </span>
               New Visitor
             </div>
+            <ClearSearchParams/>
           </div>
           <div className="newvisitor" />
         </div>
