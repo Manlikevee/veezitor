@@ -70,6 +70,8 @@ export const VeeContextProvider = ({ children }) => {
           post_id: ref,
         };
   
+
+        
         // Define endpoint
         const endpoint = 'https://veezitorbackend.vercel.app/getvisitordetails';
         
@@ -97,9 +99,6 @@ export const VeeContextProvider = ({ children }) => {
       }
     }
   };
-
-
-
 
  async function acceptvisitor(ref){
 if (ref){
@@ -144,8 +143,7 @@ if (ref){
      }
 }
 
-  }
-
+  };
 
   function checkusername() {
     let accessToken = Cookies.get("access_token");
@@ -157,7 +155,7 @@ if (ref){
       setUserid(decodedid);
       console.log("rannnn");
     }
-  }
+  };
 
   const fetchEmployeeData = () => {
     let accessToken = Cookies.get("access_token");
@@ -208,7 +206,7 @@ if (ref){
     } catch (error) {
       throw new Error("Failed to refresh access token");
     }
-  }
+  };
 
   const axiosInstance = axios.create({
     baseURL: "https://veezitorbackend.vercel.app/", // Update base URL
@@ -216,7 +214,6 @@ if (ref){
       "Content-Type": "application/json",
     },
   });
-
   // Request interceptor
   axiosInstance.interceptors.request.use(
     async (config) => {
@@ -275,7 +272,6 @@ if (ref){
       return Promise.reject(error);
     }
   );
-
   // Response interceptor
   axiosInstance.interceptors.response.use(
     (response) => {
@@ -312,7 +308,7 @@ if (ref){
     }
 
 
-  }
+  };
 
   const fetchqrcode = () => {
 
@@ -375,7 +371,6 @@ if (ref){
       });
     }
   };
-
 
   const fetchplans = () => {
     axios
@@ -494,7 +489,65 @@ if (ref){
          }
     }
     
+  };
+
+  async function fetchuserdata() {
+
+    let accessToken = Cookies.get("access_token");
+    if(accessToken){
+      try {
+        setLoading(true);
+        const response = await axiosInstance.get("/Dashboard");
+        console.log("it rannnn", response.data); // Assuming the response data contains useful 
+        setEmployee(response?.data?.employee_data);
+        setIntegrations(response?.data?.integration);
+        setQrcode(response?.data?.qrcards);
+        setVisitors(response?.data?.visitor_serializer);
+        setLoading(false);
+        setLoadingqr(true);
+        setemployeedataloaded(true);
+        const myvisitors = response?.data?.visitor_serializer
+   
+        if(myvisitors){
+          const pendingVisitors = myvisitors.filter(
+            (visitor) => visitor.status == "pending_approval"
+          );
+          const resheduleVisitors = myvisitors.filter(
+            (visitor) => visitor.status === "reshedule"
+          );
+          const inProgressVisitors = myvisitors.filter(
+            (visitor) => visitor.status === "inprogress"
+          );
+          const awaitingvisitors = myvisitors.filter(
+            (visitor) => visitor.status === "awaiting_confirmation"
+          );
+      
+          setPendingApproval(pendingVisitors);
+          setReshedule(resheduleVisitors);
+          setInProgress(inProgressVisitors);
+          setAwaiting(awaitingvisitors);
+          setVisitordataloaded(true);
+        };
+        setVisitordataloaded(true);
+        toast.info("Successfully Fetched User Data.");
+        return response.data; // Return the data for further use if needed
+      } catch (error) {
+        setLoading(false);
+        if (axios.isAxiosError(error) && error.response?.status === 404) {
+          toast.info("Kindly Setup Your Company Info.");
+          setError(true);
+        } else {
+          console.error(`An error occurred: ${error.message}`);
+          toast.error(`An error occurred: ${error.message}`);
+        }
+        // Optionally, handle the error in a way that suits your application
+        // throw error; // Rethrow the error if you want to handle it later
       }
+    }
+
+
+
+  };
 
   useEffect(() => {
     // Filter visitors data into separate variables based on status
@@ -518,13 +571,15 @@ if (ref){
     setVisitordataloaded(true);
   }, [visitors]);
 
+
   useEffect(() => {
     checkusername();
-      fetchEmployeeData();
-    fetchqrcode();
-    fetchvisitors();
+    fetchuserdata();
+      // fetchEmployeeData();
+    // fetchqrcode();
+    // fetchvisitors();
     fetchplans();
-    fetchintegrations()
+    // fetchintegrations()
     // Check if access token exists in local storage
   }, []);
   const datatoken = Cookies.get('userdata_token');

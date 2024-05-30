@@ -97,7 +97,7 @@ const page = () => {
               </span>
               New Visitor
             </div>
-            <ClearSearchParams/>
+            {/* <ClearSearchParams/> */}
           </div>
           <div className="newvisitor" />
         </div>

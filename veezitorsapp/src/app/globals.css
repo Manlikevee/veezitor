@@ -144,7 +144,16 @@ height: 100%;
     font-family: poppins
     ;
 }
-
+.grp{
+    display: grid;
+    align-items: center;
+    gap: 20px;
+width: 100%;
+padding: 15px;
+background-color: white;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    padding-bottom: 30px;
+}
 .mytablesearch{
     display: flex;
     justify-content: space-between;
@@ -3517,3 +3526,230 @@ div#displaynonpending {
         border: 1px solid #eeeeee;
         transition: 0.5s ease-in-out;
     }
+
+
+
+    .settingsbox{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-family: Nunito Sans;
+  
+    }
+    
+    .settingboxdiv{
+        width: 100%;
+        padding: 25px;
+        box-shadow: 0 2px 10px hsla(0, 0%, 0%, 0.04);
+        background-color: white;
+        border-radius: 4px;
+    }
+    
+    .accountsubtype{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .accountprice{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .accountexpirydate{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .topsettingtitle{
+        font-family: Space Grotesk;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+        margin-bottom: 10px;
+    }
+    
+    .accountflex{
+        display: flex;
+        width: 100%;
+    }
+    
+    .upgradeplanbtn{
+    margin-left: auto;
+    }
+    
+    .accountflexarea1{
+        display: flex;
+        gap: 40px;
+        width: 80%;
+    }
+    
+    .accountflexlabel{
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 21px;
+        letter-spacing: 0em;
+        text-align: left;
+         color: #9A4C1E;
+
+   
+    }
+    
+    .accountsubcontent{
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 21px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #181818;
+ 
+    }
+    
+    .accountpricecontent{
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 21px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #181818; 
+    }
+    
+    .accountexpirycontent{
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 21px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #181818; 
+    }
+    
+    .mybtn{
+     display: inline-block;
+     padding: 15px;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+    background-color:  #9A4C1E;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    }
+    
+    .emailcontent{
+
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+    }
+    
+    .notificationdiv{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    
+    .notflex{
+        display: flex;
+        width: 100%;
+    
+    }
+    
+    .chkbx{
+        width: 5%;
+    }
+    
+    .textbx{
+        width: 90%;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #25213B;
+    }
+    
+    
+    .passwordtext{
+   
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    color:#25213B ;
+    }
+    
+    .deactivatetext{
+        width: 70%;
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+        letter-spacing: 0em;
+        text-align: left;
+          color: #25213B;
+    }
+    
+    .deactivatetextred{
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-top: 14px;
+    color: #F12222;
+    }
+    
+    
+    @media only screen and (max-width: 800px) {
+        .accountflex {
+        flex-direction: row;
+        flex-wrap: wrap;
+        }
+        .accountflexarea1{
+            gap: 16px;
+            flex-direction: column;
+            justify-content: center;
+            align-self: center;
+            width: 100%;
+        }
+        .passwordtext {
+            line-height: 21px;
+        }
+    
+        .emailcontent{
+            line-height: 21px;
+        }
+    
+        .deactivatetext{
+            width: 100%;
+        }
+        .notflex{
+            gap: 5px;
+        }
+        .textbx{
+            width: 100%;
+        }
+        .upgradeplanbtn{
+            margin-top: 20px;
+            margin-left: 1px;
+            }
+            
+        .settingboxdiv{
+            padding: 17px;
+        }
+      }

@@ -18,7 +18,7 @@ const Acceptvisit = ({togglevisitorbar, acceptvisitor}) => {
         }
       }, []);
   return (
-    <div>Acceptvisit</div>
+   <></>
   )
 }
 
