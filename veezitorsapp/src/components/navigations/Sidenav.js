@@ -68,7 +68,7 @@ const Sidenav = ({mylogo}) => {
           <div class="dashflextext">Dashboard </div>
         </Link>
 
-        <Link href="index.html" class="dashflex">
+        <Link href="#" class="dashflex">
           <div class="dashflexicon">
             <span class="material-symbols-outlined"> work </span>
           </div>
@@ -110,7 +110,7 @@ const Sidenav = ({mylogo}) => {
                 </div>
                 <div class="dashflextext">Vendor</div>
               </Link>
-              <Link href="visitorslog.html" class="dashflex">
+              <Link href="#" class="dashflex">
                 <div class="dashflexicon">
                   <span class="material-symbols-outlined">
                     fact_check
@@ -119,7 +119,7 @@ const Sidenav = ({mylogo}) => {
                 <div class="dashflextext">Visitors List</div>
               </Link>
         
-              <Link href="index.html" class="dashflex">
+              <Link href="#" class="dashflex">
                 <div class="dashflexicon">
                   <span class="material-symbols-outlined">
                     app_blocking
@@ -159,7 +159,7 @@ const Sidenav = ({mylogo}) => {
 
     
 
-        <Link href="index.html" class="dashflex">
+        <Link href="/settings" className={`dashflex ${pathname === '/settings' ? 'active' : ''}`}>
           <div class="dashflexicon">
             <span class="material-symbols-outlined"> settings </span>
           </div>
