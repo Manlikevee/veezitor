@@ -8,7 +8,7 @@ import { VeeContext } from '@/context/veecontext';
 // import Qrcard from '@/components/qrcodecard/Qrcard';
 import dynamic from 'next/dynamic';
 import NewQrcode from '@/components/utility/NewQrcode';
-// import QrCodeScanner from '@/components/utility/QrCodeScanner';
+
 
 const DynamicQrcard = dynamic(() => import('@/components/qrcodecard/Qrcard'), {
   ssr: false,
@@ -41,8 +41,7 @@ const handleQrscanner   = () => {
       setShowForm(prevShowForm => !prevShowForm);
 
     };
-    console.log(myqrcode)
-    const dataArray = ['Data 1', 'Data 2', 'Data 3', 'ddddddd']; 
+    console.log(myqrcode);
   return (
     <Dashboardlayout>
   {showQrscanner && <DynamicQrCodeScanner handleQrscanner={handleQrscanner} />}  
