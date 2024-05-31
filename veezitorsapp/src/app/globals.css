@@ -3535,7 +3535,7 @@ div#displaynonpending {
         flex-direction: column;
         gap: 20px;
         font-family: Nunito Sans;
-  
+  padding-top: 12px;
     }
     
     .settingboxdiv{
@@ -3713,12 +3713,21 @@ div#displaynonpending {
     margin-top: 14px;
     color: #F12222;
     }
-    
+    .mybar{
+        background-color: white;
+        padding: 10px;
+        width: 100%;
+         height: 500px;
+    }
     
     @media only screen and (max-width: 800px) {
         .accountflex {
         flex-direction: row;
         flex-wrap: wrap;
+        }
+
+        .settingsbox{
+padding: 16px;
         }
         .accountflexarea1{
             gap: 16px;

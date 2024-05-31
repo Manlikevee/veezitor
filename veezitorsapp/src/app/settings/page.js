@@ -11,7 +11,7 @@ import Link from 'next/link';
 const page = () => {
   return (
     <Dashboardlayout>
-<br/>
+
 
    <div className="settingsbox">
   <div className="settingboxdiv">

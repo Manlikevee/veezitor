@@ -48,93 +48,102 @@ const Sidenav = ({mylogo}) => {
   return (
 
     <div className={`sidebar ${isSidebarOpen ? 'sidebarshow' : ''}`} id="sidebar">
-    <div class="close" onClick={toggleSidebar}>
-      <span class="material-symbols-outlined"> cancel </span>
+    <div className="close" onClick={toggleSidebar}>
+      <span className="material-symbols-outlined"> cancel </span>
     </div>
-    <div class="sidebardatas">
-      <div class="sidebarlogo">
+    <div className="sidebardatas">
+      <div className="sidebarlogo">
         <img src={`${mylogo || 'InvestmentOneLogo.png' }`} alt="" />
         VEEZitors
       </div>
     </div>
 
-    <div class="sidebardatas">
-      <div class="sidebardatasflex">
+    <div className="sidebardatas">
+      <div className="sidebardatasflex">
         
         <Link href="/dashboard" className={`dashflex ${pathname === '/dashboard' ? 'active' : ''}`}>
-          <div class="dashflexicon">
-            <span class="material-symbols-outlined"> dashboard </span>
+          <div className="dashflexicon">
+            <span className="material-symbols-outlined"> dashboard </span>
           </div>
-          <div class="dashflextext">Dashboard </div>
+          <div className="dashflextext">Dashboard </div>
         </Link>
 
-        <Link href="#" class="dashflex">
-          <div class="dashflexicon">
-            <span class="material-symbols-outlined"> work </span>
+        <Link href="#" className="dashflex">
+          <div className="dashflexicon">
+            <span className="material-symbols-outlined"> work </span>
           </div>
-          <div class="dashflextext">Roles</div>
+          <div className="dashflextext">Roles</div>
         </Link>
 
         <Link href="/employees" className={`dashflex ${pathname === '/employees' ? 'active' : ''}`}>
-          <div class="dashflexicon">
-            <span class="material-symbols-outlined"> badge </span>
+          <div className="dashflexicon">
+            <span className="material-symbols-outlined"> badge </span>
           </div>
-          <div class="dashflextext">Employees</div>
+          <div className="dashflextext">Employees</div>
         </Link>
         <div>
-          <Link href="#" class="dashflex " onClick={dropdown}>
-            <div class="dashflexicon">
-              <span class="material-symbols-outlined"> summarize </span>
+          <Link href="#" className={`dashflex ${pathname === '/qrcode' ||  pathname === '/analytics' ? 'active' : ''}`}    onClick={dropdown}>
+            <div className="dashflexicon">
+              <span className="material-symbols-outlined"> summarize </span>
             </div>
-            <div class="dashflextext">Visitors Module</div>
+            <div className="dashflextext">Visitors Module</div>
         
-            <span  class="ends material-symbols-outlined">
+            <span  className="ends material-symbols-outlined">
               expand_more
               </span>
           </Link>
-          <div class="dropdowncontent" id="ddown" ref={dropdownContentRef}>
-            <div class="innerdashflexs" >
-              <Link href="#" class="dashflex" onclick="visitorsform()">
-                <div class="dashflexicon">
-                  <span class="material-symbols-outlined">
+          <div className="dropdowncontent" id="ddown" ref={dropdownContentRef}>
+            <div className="innerdashflexs" >
+              <Link href="#" className="dashflex" onclick="visitorsform()">
+                <div className="dashflexicon">
+                  <span className="material-symbols-outlined">
                     nest_doorbell_visitor
                     </span>
                 </div>
-                <div class="dashflextext">New Visitor</div>
+                <div className="dashflextext">New Visitor</div>
               </Link>
-              <Link href="index.html" class="dashflex">
-                <div class="dashflexicon">
-                  <span class="material-symbols-outlined">
+              <Link href="index.html" className="dashflex">
+                <div className="dashflexicon">
+                  <span className="material-symbols-outlined">
                     store
                     </span>
                 </div>
-                <div class="dashflextext">Vendor</div>
+                <div className="dashflextext">Vendor</div>
               </Link>
-              <Link href="#" class="dashflex">
-                <div class="dashflexicon">
-                  <span class="material-symbols-outlined">
+              <Link href="#" className="dashflex">
+                <div className="dashflexicon">
+                  <span className="material-symbols-outlined">
                     fact_check
                     </span>
                 </div>
-                <div class="dashflextext">Visitors List</div>
+                <div className="dashflextext">Visitors List</div>
               </Link>
         
-              <Link href="#" class="dashflex">
-                <div class="dashflexicon">
-                  <span class="material-symbols-outlined">
+              <Link href="#" className="dashflex">
+                <div className="dashflexicon">
+                  <span className="material-symbols-outlined">
                     app_blocking
                     </span>
                 </div>
-                <div class="dashflextext">BlackList Visitor</div>
+                <div className="dashflextext">BlackList Visitor</div>
               </Link>
         
               <Link href="/qrcode" className={`dashflex ${pathname === '/qrcode' ? 'activesub' : ''}`}>
-                <div class="dashflexicon">
-                  <span class="material-symbols-outlined">
+                <div className="dashflexicon">
+                  <span className="material-symbols-outlined">
                     qr_code_scanner
                     </span>
                 </div>
-                <div class="dashflextext">ID Tags</div>
+                <div className="dashflextext">ID Tags</div>
+              </Link>
+
+              <Link href="/analytics" className={`dashflex ${pathname === '/analytics' ? 'activesub' : ''}`}>
+                <div className="dashflexicon">
+                  <span className="material-symbols-outlined">
+                    qr_code_scanner
+                    </span>
+                </div>
+                <div className="dashflextext">Analytics</div>
               </Link>
           
             </div>
@@ -143,38 +152,38 @@ const Sidenav = ({mylogo}) => {
         </div>
 
         <Link href="/integrations" className={`dashflex ${pathname === '/integrations' ? 'active' : ''}`}>
-          <div class="dashflexicon">
-            <span class="material-symbols-outlined"> display_settings
+          <div className="dashflexicon">
+            <span className="material-symbols-outlined"> display_settings
  </span>
           </div>
-          <div class="dashflextext">Integrations</div>
+          <div className="dashflextext">Integrations</div>
         </Link>
 
         <Link href="/qrcode" className={`dashflex ${pathname === '/qrcode' ? 'active' : ''}`}>
-          <div class="dashflexicon">
-            <span class="material-symbols-outlined"> receipt_long </span>
+          <div className="dashflexicon">
+            <span className="material-symbols-outlined"> receipt_long </span>
           </div>
-          <div class="dashflextext">Report</div>
+          <div className="dashflextext">Report</div>
         </Link>
 
     
 
         <Link href="/settings" className={`dashflex ${pathname === '/settings' ? 'active' : ''}`}>
-          <div class="dashflexicon">
-            <span class="material-symbols-outlined"> settings </span>
+          <div className="dashflexicon">
+            <span className="material-symbols-outlined"> settings </span>
           </div>
-          <div class="dashflextext">Settings</div>
+          <div className="dashflextext">Settings</div>
         </Link>
       </div>
     </div>
 
-    <div class="messagesettings">
-      <div class="logoutbtn" onClick={logout}>
-        <div class="dashflex">
-          <div class="icon">
-            <span class="material-symbols-outlined"> logout </span>
+    <div className="messagesettings">
+      <div className="logoutbtn" onClick={logout}>
+        <div className="dashflex">
+          <div className="icon">
+            <span className="material-symbols-outlined"> logout </span>
           </div>
-          <div class="messagetext">Logout</div>
+          <div className="messagetext">Logout</div>
         </div>
       </div>
     </div>
