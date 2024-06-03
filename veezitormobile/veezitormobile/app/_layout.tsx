@@ -8,7 +8,12 @@ import {VeeContextProvider} from '@/components/Veecontext'
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import 'react-native-gesture-handler';
+import {
+  BottomSheetModal,
+  BottomSheetModalProvider,
+} from "@gorhom/bottom-sheet";
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -42,7 +47,8 @@ export default function RootLayout() {
   }
 
   return (
-
+    <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetModalProvider>
 <VeeContextProvider>
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
@@ -52,6 +58,7 @@ export default function RootLayout() {
       </Stack>
     </ThemeProvider>
     </VeeContextProvider>
-
+    </BottomSheetModalProvider>
+    </GestureHandlerRootView>
   );
 }

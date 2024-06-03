@@ -34,7 +34,7 @@ export default function HomeScreen() {
   const [selectedOption, setSelectedOption] = useState('Awaiting');
   const colorScheme = useColorScheme();
 
-  const {visitordataloaded, isOpen, test, setTest, username,  fetchvisitors,  acceptvisitor, visitors , awaiting, pendingApproval, reshedule, inProgress, employeedataloaded, togglevisitorbar } = useContext(VeeContext);
+  const {visitordataloaded, isOpen, test, setTest, username,  fetchvisitors,  acceptvisitor, visitors , awaiting, pendingApproval, reshedule, inProgress, employeedataloaded, toggleVisitorBar, visitationdata } = useContext(VeeContext);
   
 
   
@@ -85,9 +85,9 @@ export default function HomeScreen() {
 {
   visitordataloaded ? (
     <>
-    {selectedOption  == 'Awaiting'  &&  <Visitortable data={awaiting}/>}
-{selectedOption  == 'Inprogress'  &&  <Visitortable data={inProgress}/>}
-{selectedOption  == 'Pending'  &&  <Visitortable data={pendingApproval}/>}
+    {selectedOption  == 'Awaiting'  &&  <Visitortable data={awaiting} toggleVisitorBar={toggleVisitorBar} visitationdata={visitationdata}/>}
+{selectedOption  == 'Inprogress'  &&  <Visitortable data={inProgress} toggleVisitorBar={toggleVisitorBar} visitationdata={visitationdata}/>}
+{selectedOption  == 'Pending'  &&  <Visitortable data={pendingApproval} toggleVisitorBar={toggleVisitorBar} visitationdata={visitationdata}/>}
     </>
   ) : (<Text>lOADING......</Text>)
 }

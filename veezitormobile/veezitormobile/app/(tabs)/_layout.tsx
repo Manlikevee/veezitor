@@ -7,6 +7,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { MaterialCommunityIcons, SimpleLineIcons } from '@expo/vector-icons';
 import { Pressable, SafeAreaView, View } from 'react-native';
 import Avatar from '@/components/Avatar'
+
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 

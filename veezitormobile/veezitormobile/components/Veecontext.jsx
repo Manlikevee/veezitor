@@ -62,7 +62,7 @@ export const VeeContextProvider = ({ children }) => {
         const response = await axios.post(endpoint, payload);
 
         if (response.status === 200) {
-          console.log('response', response);
+        
           setVisitationdata(response.data?.visitorsdata);
           console.log('Visitation details fetched successfully');
         }

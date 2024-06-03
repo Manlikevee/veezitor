@@ -1,12 +1,63 @@
-import { StyleSheet, Text, TextInput, View,TouchableOpacity, FlatList  } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, TextInput, View,TouchableOpacity, FlatList ,  Image, } from 'react-native'
 import { ThemedView } from '@/components/ThemedView';
 import { EvilIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { ThemedText } from './ThemedText';
 import  {Colors}  from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import bg from "../assets/images/avatar.png";
+import successicon from '../assets/images/success.png' 
+import pendicon from '../assets/images/pend.png' 
+import myline from '../assets/images/line.png' 
+import { useRef, useState, useCallback, useContext, useMemo, React } from "react";
+import {
+    BottomSheetModal,
+    BottomSheetModalProvider,
+    BottomSheetScrollView,
+    BottomSheetBackdrop,
+    BottomSheetFooter
+  } from "@gorhom/bottom-sheet";
+import { ScrollView } from 'react-native-gesture-handler';
 
-const Visitortable = ({data}) => {
+const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
+    const [isOpen, setOpen] = useState(false);
+    const bottomSheetModalRef = useRef(null);
+  
+    const snapPoints = ["30%","45%",  "50%", "50%", "85%" ];
+
+  async  function handlePresentModal(id) {
+    
+        bottomSheetModalRef.current?.present();
+        await  toggleVisitorBar(id);
+        setTimeout(() => {
+            setOpen(true);
+        }, 400);
+      }
+
+      const renderFooter = useCallback(
+        props => (
+          <BottomSheetFooter {...props} >
+            <ThemedView style={{paddingHorizontal:20, paddingVertical:6}}>
+            <ThemedView lightColor='#9a4c1e' style={styles.footerContainer}>
+              <ThemedText lightColor='white' style={styles.footerText}> Approve</ThemedText>
+            </ThemedView>
+            </ThemedView>
+      
+          </BottomSheetFooter>
+        ),
+        []
+      );
+      const renderBackdrop = useCallback(
+        (props) => (
+          <BottomSheetBackdrop
+            {...props}
+            disappearsOnIndex={1}
+            appearsOnIndex={1}
+            backgroundColor="rgba(0, 0, 0, 0.5)" 
+          />
+        ),
+        []
+      );
+  
     const colorScheme = useColorScheme();
     const visitors = [
         {
@@ -110,9 +161,13 @@ const Visitortable = ({data}) => {
             </ThemedView>
       
         </ThemedView>
+
+
         {data.length >= 1 &&  (
                     data.map((info, index) => (       
-                        <TouchableOpacity key={index}>
+                        <TouchableOpacity key={info.ref}
+                        onPress={() => handlePresentModal(info.ref)}
+                        >
                         <ThemedView
                          darkColor="#111111"
                         style={[
@@ -134,7 +189,7 @@ const Visitortable = ({data}) => {
                         
                         <ThemedView  darkColor="#111111" style={{justifyContent:'space-between', flexDirection:'row'}}>
                             <ThemedText style={styles.placeholder} lightColor='#000' >Email</ThemedText>
-                            <ThemedText style={styles.actualtext} lightColor='#6b788e' >{info?.email}</ThemedText>
+                            <ThemedText style={styles.actualtext} lightColor='#6b788e' >{info?.email} </ThemedText>
                         </ThemedView>
                         <ThemedView  darkColor="#111111" style={{justifyContent:'space-between', flexDirection:'row'}}>
                             <ThemedText style={styles.placeholder}  lightColor='#000' >Phone Number</ThemedText>
@@ -160,6 +215,152 @@ const Visitortable = ({data}) => {
                         ))
         )}
 
+
+        <BottomSheetModal
+          ref={bottomSheetModalRef}
+          index={2}
+          footerComponent={renderFooter}
+          backdropComponent={(props) => (
+          <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />
+        )}
+          snapPoints={snapPoints}
+          backgroundStyle={{ borderRadius: 10, 
+            backgroundColor: Colors[colorScheme ?? 'light'].tabtop,
+          }}
+          onDismiss={() => setOpen(false)}
+          handleComponent={() => (
+            <View style={[styles.draggableHandle, { backgroundColor: Colors[colorScheme ?? 'light'].text,}]}>
+    
+            </View>
+          )}
+          style={{ flex: 1, }} 
+        >
+          <View  style={{ flex: 1, padding: 10 }}>
+          <ThemedText style={[styles.title, { fontSize:17, textAlign:'center', borderBottomWidth: 1, paddingBottom: 10,
+         borderColor: Colors[colorScheme ?? 'light'].borderColor,  
+        },
+           ]}>
+          Visitor Details
+            </ThemedText>
+    
+                <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
+       <ThemedView style={styles.topsec} lightColor='#f2f2f2' >
+       <Image
+          source={bg}
+          style={{
+            width: 83,
+            height: 83,
+            objectFit: "contain",
+            alignSelf: "center",
+            borderRadius:50
+   
+          }}
+        />
+        <ThemedText style={styles.placeholder}  lightColor='#000'>    {visitationdata?.first_name && visitationdata?.last_name 
+    ? visitationdata.first_name + ' ' + visitationdata.last_name 
+    : 'loading'} </ThemedText>
+        <ThemedText style={styles.actualtext} lightColor='#6b788e'>   {visitationdata?.email}</ThemedText>
+       </ThemedView>
+       <ThemedText>Visitation Details</ThemedText>
+            
+       <ThemedView style={styles.bottomsec} lightColor='#f2f2f2' >
+       <ThemedText>Visitation Details</ThemedText>
+   <ThemedView lightColor='transparent' darkColor='transparent' style={{flexDirection:'row', gap: 10, alignItems:'center'}}>
+   <Image
+          source={successicon}
+          style={{
+            width: 40,
+            height: 40,
+            objectFit: "contain",
+            alignSelf: "center",
+            borderRadius:50,
+            flexDirection:'row',
+          }}
+        />
+        <ThemedView lightColor='transparent' darkColor='transparent'>
+            <ThemedText>Visitation Request</ThemedText>
+            <ThemedText>5 days ago</ThemedText>
+        </ThemedView>
+
+   </ThemedView>
+
+   <ThemedView lightColor='transparent' darkColor='transparent'>
+   <MaterialCommunityIcons name="dots-vertical" size={24} color="#999" style={{marginLeft:7}}/>
+   </ThemedView>
+
+   <ThemedView lightColor='transparent' darkColor='transparent' style={{flexDirection:'row', gap: 10, alignItems:'center'}}>
+   <Image
+          source={pendicon}
+          style={{
+            width: 40,
+            height: 40,
+            objectFit: "contain",
+            alignSelf: "center",
+            borderRadius:50,
+            flexDirection:'row',
+          }}
+        />
+        <ThemedView lightColor='transparent' darkColor='transparent'>
+            <ThemedText>Awaiting Confirmation</ThemedText>
+            <ThemedText>5 days ago</ThemedText>
+        </ThemedView>
+
+   </ThemedView>
+   <ThemedView lightColor='transparent' darkColor='transparent'>
+   <MaterialCommunityIcons name="dots-vertical" size={24} color="#999" style={{marginLeft:7}}/>
+   </ThemedView>
+
+   <ThemedView lightColor='transparent' darkColor='transparent' style={{flexDirection:'row', gap: 10, alignItems:'center'}}>
+   <Image
+          source={pendicon}
+          style={{
+            width: 40,
+            height: 40,
+            objectFit: "contain",
+            alignSelf: "center",
+            borderRadius:50,
+            flexDirection:'row',
+          }}
+        />
+        <ThemedView lightColor='transparent' darkColor='transparent'>
+            <ThemedText>Assign Tag</ThemedText>
+            <ThemedText>5 days ago</ThemedText>
+        </ThemedView>
+
+   </ThemedView>
+
+   <ThemedView lightColor='transparent' darkColor='transparent'>
+   <MaterialCommunityIcons name="dots-vertical" size={24} color="#999" style={{marginLeft:7}}/>
+   </ThemedView>
+
+   <ThemedView lightColor='transparent' darkColor='transparent' style={{flexDirection:'row', gap: 10, alignItems:'center'}}>
+   <Image
+          source={pendicon}
+          style={{
+            width: 40,
+            height: 40,
+            objectFit: "contain",
+            alignSelf: "center",
+            borderRadius:50,
+            flexDirection:'row',
+          }}
+        />
+        <ThemedView lightColor='transparent' darkColor='transparent'>
+            <ThemedText>Signou</ThemedText>
+            <ThemedText></ThemedText>
+        </ThemedView>
+
+   </ThemedView>
+
+<ThemedView>
+
+</ThemedView>
+       </ThemedView>  
+                </BottomSheetScrollView>
+
+          </View>
+       
+        </BottomSheetModal>
         </ThemedView>
   
 
@@ -179,6 +380,25 @@ gap: 9,
 paddingVertical: 17,
 borderRadius: 10
     },
+    topsec:{
+        padding: 10,
+        borderRadius:4,
+        gap: 5,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    bottomsec:{
+        padding: 10,
+        borderRadius:4,
+        gap: 5,
+        alignItems:'flex-start',
+        justifyContent:'flex-start'
+    },
+    contentContainer:{
+padding: 10,
+flex: 1,
+gap:10
+    },
     myinput:{
         flexDirection:'row',
         padding: 2,
@@ -195,5 +415,10 @@ borderRadius: 10
         alignItems:'center',
         justifyContent:'center',
         borderRadius: 3
+    },
+    footerContainer:{
+padding: 14,
+borderRadius:4,
+alignItems:'center'
     }
 })
