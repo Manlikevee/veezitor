@@ -9,8 +9,41 @@ import { Pressable, SafeAreaView, View } from 'react-native';
 import Avatar from '@/components/Avatar'
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
+
+
+  const colorScheme = useColorScheme();
+  const tabhead = () => {
+   
+  
+    return {
+      headerLeft: () => (
+        <Link href="/modal" asChild>
+          <Pressable>
+            {({ pressed }) => <Avatar />}
+          </Pressable>
+        </Link>
+      ),
+      headerRight: () => (
+        <Link href="/(auth)/login" asChild>
+          <Pressable>
+            {({ pressed }) => (
+              <SimpleLineIcons
+                name="logout"
+                size={18}
+                color={Colors[colorScheme ?? 'light'].text}
+                style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+              />
+            )}
+          </Pressable>
+        </Link>
+      ),
+      headerStyle: {
+        borderBottomWidth: 1, // Border bottom width
+        borderBottomColor: '#ccc', // Border bottom color
+      },
+    };
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
     <Tabs
@@ -30,39 +63,16 @@ export default function TabLayout() {
         name="index"
         options={{
           title: '',
+          headerShadowVisible:true,
+         headerTintColor:'red',
           tabBarIcon: ({ color, focused }) => (
             <>
             {/* <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} /> */}
             <MaterialCommunityIcons color={color} name={focused ? 'pentagon' : 'pentagon-outline'}  size={25} />
             </>
        
-          ),
-          headerLeft: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                 
-                    <Avatar />
-                
-                )}
-              </Pressable>
-            </Link>
-          ),
-          headerRight: () => (
-            <Link href="/(auth)/login" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <SimpleLineIcons
-                    name="logout"
-                    size={18}
-                    color={Colors[colorScheme ?? "light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
-          
+          )          ,
+          ...tabhead()
         }}
       />
 
@@ -76,7 +86,9 @@ export default function TabLayout() {
             <MaterialCommunityIcons color={color} name={focused ? 'file-document' : 'file-document-outline'}  size={25}  />
             </>
        
-          ),
+          )
+          ,
+          ...tabhead()
         }}
       />
 
@@ -113,6 +125,7 @@ export default function TabLayout() {
             // <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
             <MaterialCommunityIcons color={color} name={focused ? 'account' : 'account-outline'}  size={25}  />
           ),
+          tabhead
         }}
       />
     </Tabs>

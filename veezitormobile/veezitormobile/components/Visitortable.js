@@ -1,13 +1,14 @@
-import { StyleSheet, Text, TextInput, View,TouchableOpacity, FlatList ,  Image, } from 'react-native'
+import { StyleSheet, Text, TextInput, View,TouchableOpacity, FlatList ,  Image,Dimensions, ActivityIndicator } from 'react-native'
 import { ThemedView } from '@/components/ThemedView';
-import { EvilIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { EvilIcons, MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
 import { ThemedText } from './ThemedText';
 import  {Colors}  from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import bg from "../assets/images/avatar.png";
 import successicon from '../assets/images/success.png' 
 import pendicon from '../assets/images/pend.png' 
-import myline from '../assets/images/line.png' 
+import myline from '../assets/images/line.png' ;
+import ShimmerEffect from './ShimmerEffect';
 import { useRef, useState, useCallback, useContext, useMemo, React } from "react";
 import {
     BottomSheetModal,
@@ -16,12 +17,12 @@ import {
     BottomSheetBackdrop,
     BottomSheetFooter
   } from "@gorhom/bottom-sheet";
-import { ScrollView } from 'react-native-gesture-handler';
 
-const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
+
+const Visitortable = ({data, toggleVisitorBar, visitationdata, timeAgo, loadingaccept}) => {
     const [isOpen, setOpen] = useState(false);
     const bottomSheetModalRef = useRef(null);
-  
+    const SCREEN_WIDTH = Dimensions.get("window").width;
     const snapPoints = ["30%","45%",  "50%", "50%", "85%" ];
 
   async  function handlePresentModal(id) {
@@ -36,11 +37,38 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
       const renderFooter = useCallback(
         props => (
           <BottomSheetFooter {...props} >
-            <ThemedView style={{paddingHorizontal:20, paddingVertical:6}}>
-            <ThemedView lightColor='#9a4c1e' style={styles.footerContainer}>
-              <ThemedText lightColor='white' style={styles.footerText}> Approve</ThemedText>
-            </ThemedView>
-            </ThemedView>
+<ThemedView style={{ paddingHorizontal: 20, paddingVertical: 6 }}>
+  {visitationdata ? (
+    <>
+      {visitationdata?.stage_2 && !visitationdata?.stage_3 && !visitationdata?.stage_4 && !loadingaccept ? (
+        <ThemedView lightColor='#9a4c1e' style={styles.footerContainer}>
+          <MaterialCommunityIcons name='qrcode-scan' size={14} style={styles.footerIcon} />
+          <ThemedText lightColor='white' style={styles.footerText}>
+            Assign Qr Tag 
+          </ThemedText>
+        </ThemedView>
+      ) : visitationdata?.stage_2 && visitationdata?.stage_3 && !visitationdata?.stage_4 && !loadingaccept ? (
+        <ThemedView lightColor='#1D61E7' style={styles.footerContainer}>
+          <MaterialCommunityIcons name='logout' size={14} style={styles.footerIcon} />
+          <ThemedText lightColor='white' style={styles.footerText}>
+            Sign Out
+          </ThemedText>
+        </ThemedView>
+      ) : (
+        <ThemedView lightColor='#9a4c1e' style={styles.footerContainer}>
+          <Octicons name='verified' size={14} style={styles.footerIcon} />
+          <ThemedText lightColor='white' style={styles.footerText}>
+            Approve
+          </ThemedText>
+        </ThemedView>
+      )}
+    </>
+  ) : loadingaccept ? (
+    <ThemedView lightColor='#000' style={styles.footerContainer}>
+      <ActivityIndicator size="small" color="#fff" />
+    </ThemedView>
+  ) : null}
+</ThemedView>
       
           </BottomSheetFooter>
         ),
@@ -219,7 +247,44 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
         <BottomSheetModal
           ref={bottomSheetModalRef}
           index={2}
-          footerComponent={renderFooter}
+          handleIndicatorStyle={styles.handleIndicator}
+          footerComponent={(props) => (
+            <BottomSheetFooter {...props} >
+            <ThemedView style={{ paddingHorizontal: 20, paddingVertical: 6 }}>
+              {visitationdata.stage_1 ? (
+                <>
+                  {visitationdata?.stage_2 && !visitationdata?.stage_3 && !visitationdata?.stage_4 && !loadingaccept ? (
+                    <ThemedView lightColor='#9a4c1e' style={styles.footerContainer}>
+                      <MaterialCommunityIcons name='qrcode-scan' size={14} style={styles.footerIcon} />
+                      <ThemedText lightColor='white' style={styles.footerText}>
+                        Assign Qr Tag 
+                      </ThemedText>
+                    </ThemedView>
+                  ) : visitationdata?.stage_2 && visitationdata?.stage_3 && !visitationdata?.stage_4 && !loadingaccept ? (
+                    <ThemedView lightColor='#1D61E7' style={styles.footerContainer}>
+                      <MaterialCommunityIcons name='logout' size={14} style={styles.footerIcon} />
+                      <ThemedText lightColor='white' style={styles.footerText}>
+                        Sign Out
+                      </ThemedText>
+                    </ThemedView>
+                  ) : (
+                    <ThemedView lightColor='#9a4c1e' style={styles.footerContainer}>
+                      <Octicons name='verified' size={14} style={styles.footerIcon} />
+                      <ThemedText lightColor='white' style={styles.footerText}>
+                        Approve
+                      </ThemedText>
+                    </ThemedView>
+                  )}
+                </>
+              ) : loadingaccept ? (
+                <ThemedView lightColor='#000' style={styles.footerContainer}>
+                  <ActivityIndicator size="small" color="#fff" />
+                </ThemedView>
+              ) : null}
+            </ThemedView>
+                  
+                      </BottomSheetFooter>
+          )}
           backdropComponent={(props) => (
           <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />
         )}
@@ -228,11 +293,7 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
             backgroundColor: Colors[colorScheme ?? 'light'].tabtop,
           }}
           onDismiss={() => setOpen(false)}
-          handleComponent={() => (
-            <View style={[styles.draggableHandle, { backgroundColor: Colors[colorScheme ?? 'light'].text,}]}>
-    
-            </View>
-          )}
+
           style={{ flex: 1, }} 
         >
           <View  style={{ flex: 1, padding: 10 }}>
@@ -258,8 +319,18 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
         />
         <ThemedText style={styles.placeholder}  lightColor='#000'>    {visitationdata?.first_name && visitationdata?.last_name 
     ? visitationdata.first_name + ' ' + visitationdata.last_name 
-    : 'loading'} </ThemedText>
-        <ThemedText style={styles.actualtext} lightColor='#6b788e'>   {visitationdata?.email}</ThemedText>
+    : (    
+      <ShimmerEffect
+      width={SCREEN_WIDTH / 3.2}
+      height={11}
+      style={styles.shimmer}
+    />
+          )} </ThemedText>
+        <ThemedText style={styles.actualtext} lightColor='#6b788e'>   {visitationdata?.email ||  <ShimmerEffect
+      width={SCREEN_WIDTH / 2.2}
+      height={11}
+      style={styles.shimmer}
+    />  }</ThemedText>
        </ThemedView>
        <ThemedText>Visitation Details</ThemedText>
             
@@ -267,7 +338,7 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
        <ThemedText>Visitation Details</ThemedText>
    <ThemedView lightColor='transparent' darkColor='transparent' style={{flexDirection:'row', gap: 10, alignItems:'center'}}>
    <Image
-          source={successicon}
+          source={ visitationdata?.stage_1? (successicon) : (pendicon)}
           style={{
             width: 40,
             height: 40,
@@ -279,7 +350,13 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
         />
         <ThemedView lightColor='transparent' darkColor='transparent'>
             <ThemedText>Visitation Request</ThemedText>
-            <ThemedText>5 days ago</ThemedText>
+            <ThemedText>
+            {visitationdata?.stage_1 ? (timeAgo(visitationdata?.created_at)) :  <ShimmerEffect
+      width={SCREEN_WIDTH / 2.2}
+      height={11}
+      style={styles.shimmer}
+    />  }
+            </ThemedText>
         </ThemedView>
 
    </ThemedView>
@@ -290,7 +367,7 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
 
    <ThemedView lightColor='transparent' darkColor='transparent' style={{flexDirection:'row', gap: 10, alignItems:'center'}}>
    <Image
-          source={pendicon}
+        source={ visitationdata?.stage_2? (successicon) : (pendicon)}
           style={{
             width: 40,
             height: 40,
@@ -302,7 +379,14 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
         />
         <ThemedView lightColor='transparent' darkColor='transparent'>
             <ThemedText>Awaiting Confirmation</ThemedText>
-            <ThemedText>5 days ago</ThemedText>
+          
+            <ThemedText>
+            {visitationdata?.stage_2 ? (timeAgo(visitationdata?.accepted_time)) :  <ShimmerEffect
+      width={SCREEN_WIDTH / 2.2}
+      height={11}
+      style={styles.shimmer}
+    />  }
+            </ThemedText>
         </ThemedView>
 
    </ThemedView>
@@ -312,7 +396,7 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
 
    <ThemedView lightColor='transparent' darkColor='transparent' style={{flexDirection:'row', gap: 10, alignItems:'center'}}>
    <Image
-          source={pendicon}
+          source={ visitationdata?.stage_3? (successicon) : (pendicon)}
           style={{
             width: 40,
             height: 40,
@@ -324,7 +408,13 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
         />
         <ThemedView lightColor='transparent' darkColor='transparent'>
             <ThemedText>Assign Tag</ThemedText>
-            <ThemedText>5 days ago</ThemedText>
+            <ThemedText>
+            {visitationdata?.stage_3 ? (timeAgo(visitationdata?.clock_in)) :  <ShimmerEffect
+      width={SCREEN_WIDTH / 2.2}
+      height={11}
+      style={styles.shimmer}
+    />  }
+            </ThemedText>
         </ThemedView>
 
    </ThemedView>
@@ -335,7 +425,7 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
 
    <ThemedView lightColor='transparent' darkColor='transparent' style={{flexDirection:'row', gap: 10, alignItems:'center'}}>
    <Image
-          source={pendicon}
+           source={ visitationdata?.stage_4? (successicon) : (pendicon)}
           style={{
             width: 40,
             height: 40,
@@ -346,8 +436,12 @@ const Visitortable = ({data, toggleVisitorBar, visitationdata}) => {
           }}
         />
         <ThemedView lightColor='transparent' darkColor='transparent'>
-            <ThemedText>Signou</ThemedText>
-            <ThemedText></ThemedText>
+            <ThemedText>Signout</ThemedText>
+            {visitationdata?.stage_4 ? (timeAgo(visitationdata?.clock_out)) :  <ShimmerEffect
+      width={SCREEN_WIDTH / 2.2}
+      height={11}
+      style={styles.shimmer}
+    />  }
         </ThemedView>
 
    </ThemedView>
@@ -380,6 +474,12 @@ gap: 9,
 paddingVertical: 17,
 borderRadius: 10
     },
+    // handleIndicator: {
+    //   backgroundColor: '#999',
+    //   width: 40,
+    //   height: 6,
+    //   borderRadius: 3,
+    // },
     topsec:{
         padding: 10,
         borderRadius:4,
@@ -408,6 +508,18 @@ gap:10
         alignItems:'center',
 
     },
+    footerbtn:{
+
+    },
+    footerText:{
+      gap: 7,
+      alignItems:'center',
+    },
+    footerIcon:{
+      paddingRight:2,
+      color:'white'
+  
+    },
     minicion:{
         paddingVertical: 5,
         width:'10%',
@@ -419,6 +531,9 @@ gap:10
     footerContainer:{
 padding: 14,
 borderRadius:4,
-alignItems:'center'
+alignItems:'center',
+gap:2,
+flexDirection:'row',
+justifyContent:'center'
     }
 })

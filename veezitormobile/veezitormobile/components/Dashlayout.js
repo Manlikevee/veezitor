@@ -18,7 +18,7 @@ const Dashlayout = ({children}) => {
   }, []);
 
   return (
-    <ThemedView style={styles.mylayout} lightColor="#fafafa" darkColor="#000" >
+    <ThemedView style={styles.mylayout} lightColor="#f8f8f8" darkColor="#000" >
 
       <SafeAreaView>
           <ScrollView 

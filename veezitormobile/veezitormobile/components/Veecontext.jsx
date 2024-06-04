@@ -80,6 +80,46 @@ export const VeeContextProvider = ({ children }) => {
     }
   };
 
+
+  const timeAgo = (date) => {
+    const now = new Date();
+    const givenDate = new Date(date);
+  
+    // Check if the provided date is valid
+    if (isNaN(givenDate.getTime())) {
+      return "now";
+    }
+  
+    const secondsPast = Math.floor((now - givenDate) / 1000);
+  
+    if (secondsPast < 60) {
+      return "now";
+    }
+    if (secondsPast < 3600) {
+      const minutes = Math.floor(secondsPast / 60);
+      return `${minutes} minute${minutes === 1 ? '' : 's'} ago`;
+    }
+    if (secondsPast < 86400) {
+      const hours = Math.floor(secondsPast / 3600);
+      return `${hours} hour${hours === 1 ? '' : 's'} ago`;
+    }
+    if (secondsPast < 604800) {
+      const days = Math.floor(secondsPast / 86400);
+      return `${days} day${days === 1 ? '' : 's'} ago`;
+    }
+    if (secondsPast < 2592000) {
+      const weeks = Math.floor(secondsPast / 604800);
+      return `${weeks} week${weeks === 1 ? '' : 's'} ago`;
+    }
+    if (secondsPast < 31536000) {
+      const months = Math.floor(secondsPast / 2592000);
+      return `${months} month${months === 1 ? '' : 's'} ago`;
+    }
+    const years = Math.floor(secondsPast / 31536000);
+    return `${years} year${years === 1 ? '' : 's'} ago`;
+  };
+
+
   async function acceptVisitor(ref) {
     if (ref !== 'close') {
       setLoadingAccept(true);
@@ -216,6 +256,7 @@ export const VeeContextProvider = ({ children }) => {
       const response = await axiosInstance.get("/Companysetup");
       console.log("it rannnn", response.data);
       setCompanySetup(response?.data?.company_obj);
+      console.log('response?.data?.company_obj', response?.data?.company_obj)
       await SecureStore.setItemAsync('userdata_token', response.data.token);
       setLoading(false);
       return response.data;
@@ -291,6 +332,7 @@ export const VeeContextProvider = ({ children }) => {
   };
 
   const fetchVisitors = async () => {
+    setVisitordataloaded(false)
     let accessToken = await SecureStore.getItemAsync('access_token');
     if (accessToken) {
       try {
@@ -457,7 +499,7 @@ export const VeeContextProvider = ({ children }) => {
     checkUsername();
 fetchuserdata();
 //     fetchPlans();
-//     fetchCompanySetup();
+    fetchCompanySetup();
 
   }, []);
 
@@ -525,6 +567,7 @@ fetchuserdata();
         fetchAwaiting,
         datatoken,
         setDatatoken,
+        timeAgo
       }}
     >
       {children}
