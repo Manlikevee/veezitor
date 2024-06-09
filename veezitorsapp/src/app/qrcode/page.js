@@ -14,7 +14,7 @@ const DynamicQrcard = dynamic(() => import('@/components/qrcodecard/Qrcard'), {
   ssr: false,
 });
 
-const DynamicQrCodeScanner  = dynamic(() => import('@/components/utility/QrCodeScanner'), {
+const DynamicQrCodeScanner  = dynamic(() => import('@/components/utility/Logoutqr'), {
   ssr: false,
 });
 
@@ -53,7 +53,7 @@ const handleQrscanner   = () => {
         <div className="sectionbtn">
           <div className="exportbtn" onClick={handleQrscanner}>
             <span className="material-symbols-outlined" >system_update_alt</span>
-            Export
+         Logout Tag
           </div>
           <div className="exportbtn newvisitor" onClick={toggleFormVisibility}>
             <span className="material-symbols-outlined">system_update_alt</span>

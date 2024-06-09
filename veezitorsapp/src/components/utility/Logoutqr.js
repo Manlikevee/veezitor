@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { toast } from 'sonner';
 
-const QrCodeScanner = ({handleQrscanner, myref, axiosInstance, visitorsname, fetchvisitors, setVisitationdata}) => {
+const Logoutqr = ({handleQrscanner, axiosInstance,  }) => {
     const scannerRef = useRef(null);
     const [scanResult, setScanResult] = useState(null);
     const [scanError, setScanError] = useState(null);
@@ -17,7 +17,6 @@ const QrCodeScanner = ({handleQrscanner, myref, axiosInstance, visitorsname, fet
       if(id){
     
         const payload = {
-          "post_id": selectedid,
           "tag_id": id
       }
         try {
@@ -37,27 +36,36 @@ alert('ss')
 
   }
 
-function setqr(){
+async function setqr(){
   setRetry(false)
   setLoad(true)
-  var confirmation = confirm(`confirm that you are about to assign tag ${decodedText} to ${visitorsname}`)
+  var confirmation = confirm(`confirm that you are about to signout tag ${decodedText}`)
   if (confirmation){
   
   const payload = {
       "post_id": myref,
       "tag_id": scanResult
   }
-  try {
-    const response =  axiosInstance.post(`/verifyvisitor`, payload);
-    console.log(response.data); // Assuming the response data contains useful information
-    // scanner.clear();
-    setRetry(false)
-    setLoad(false)
+  if (confirmation) {
+    setLoad(true);
+    try {
+      const url = `/logoutqr? tag_id=${decodedText}`
+      const response = await axiosInstance.get(url);
+      ToastAndroid.show(error.response.data.message, ToastAndroid.SHORT);
+      console.log(response.data); // Assuming the response data contains useful information
+      setLoad(false);
+   
+      toast.info(response?.data?.message);
+      if(response.data.available){
+        handleQrscanner();
+        scanner.clear();
+      }
 
-  } catch (error) {
-console.log(error)
-setLoad(false)
-setRetry(true)
+    } catch (error) {
+      console.log(error);
+      setLoad(false);
+      setRetry(true);
+    }
   }
 
 
@@ -72,21 +80,17 @@ useEffect(() => {
     var confirmation = confirm(`Confirm that you are about to assign tag ${decodedText} to ${visitorsname}`);
     if (confirmation) {
       setLoad(true);
-      const payload = {
-        "post_id": myref,
-        "tag_id": decodedText
-      };
       try {
-        const response = await axiosInstance.post(`/verifyvisitor`, payload);
+        const url = `/logoutqr? tag_id=${decodedText}`
+        const response = await axiosInstance.get(url);
+        ToastAndroid.show(error.response.data.message, ToastAndroid.SHORT);
         console.log(response.data); // Assuming the response data contains useful information
         setLoad(false);
      
         toast.info(response?.data?.message);
         if(response.data.available){
           handleQrscanner();
-          fetchvisitors();
           scanner.clear();
-          setVisitationdata(response.data.visitorsdata);
         }
 
       } catch (error) {
@@ -117,7 +121,7 @@ useEffect(() => {
       console.error('Failed to clear html5QrcodeScanner.', error);
     });
   };
-}, [visitorsname, myref]);
+}, []);
 
   return (
 <div className="loading-over2" id="lover" style={{ display: "flex" }} ref={scannerRef}>
@@ -175,4 +179,4 @@ close
   );
 };
 
-export default QrCodeScanner;
+export default Logoutqr;

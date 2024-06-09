@@ -402,7 +402,7 @@ if (ref){
         .get("https://veezitorbackend.vercel.app/visitor")
         .then((response) => {
           // Check if response is successful
-          if (response.status === 200) {
+          if (response.data) {
             // Handle successful response
             // toast.success(`Successful fetched visitor's`);
 
@@ -434,7 +434,7 @@ if (ref){
 
             // console.log('veezitors', response.data);
           } else {
-            toast.error(`An Error Occured`);
+            toast.error(`Anssssssss Error Occured`);
             throw new Error("Network response was not ok");
           }
         })
