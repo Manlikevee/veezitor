@@ -90,7 +90,7 @@ signinfunction(tokenResponse.access_token)
 
  async function signinfunction(mytoken){
     try {
-      const response = await axios.post('http://localhost:8000/api/auth/google/', {
+      const response = await axios.post('https://veezitorbackend.vercel.app/api/auth/google/', {
         token: mytoken,
       });
 
