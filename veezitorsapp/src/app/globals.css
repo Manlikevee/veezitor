@@ -1133,7 +1133,9 @@ color: white;
     text-align: left;
     color: #000000e0;
     }
-
+.mt-5{
+    font-family: Space Grotesk; 
+}
     .sidebar{
      min-height: 100vh;
         transition: 0.5s ease;
