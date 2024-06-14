@@ -8,14 +8,14 @@ const Landingheader = () => {
     <div className="landingheader">
     <div className="landingcontainer">
       <div className="headerlogo">
-        <Image src={mylogo} width={100} height={100} alt="" />
+        <Image src={mylogo} width={20} height={20} alt="" />
         VEEZITORS
       </div>
       <div className="links">
         <Link href="/">About Us</Link>
-        <Link href="services.html">Services</Link>
-        <a href="blog.html">Blog</a>
-        <a href="training.html">Training</a>
+        <Link href="/">Services</Link>
+        <a href="/">Blog</a>
+        <a href="/">Training</a>
       </div>
       <Link href="/auth/login" className="getstarted">
         <span className="material-symbols-outlined">lock</span> Get Started{" "}
