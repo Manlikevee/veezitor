@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import 'material-symbols';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import Veezitorcontext from "@/context/Veezitorcontext";
 import { VeeContextProvider } from "@/context/veecontext";
 const inter = Inter({ subsets: ["latin"] });
@@ -25,12 +26,14 @@ export default function RootLayout({ children }) {
         />
       </Head> */}
       <body className={inter.className}>
+      <GoogleOAuthProvider clientId="1033817667991-v3dkhbdhpi333u0imh7g81om9p78tkf1.apps.googleusercontent.com">
       <VeeContextProvider>
 
       
         {children}
         <Toaster className="custom-toaster" richColors position="top-right" />
         </VeeContextProvider>
+        </GoogleOAuthProvider>
         </body>
     </html>
   );

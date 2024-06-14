@@ -2,6 +2,9 @@
 'use client'
 import React, { useState , useContext} from 'react'
 import { Toaster, toast } from 'sonner'
+import { GoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
+import { useGoogleOneTapLogin } from '@react-oauth/google';
 import Image from 'next/image';
 import mylogo from '../../../../public/InvestmentOneLogo.png'
 import Link from 'next/link';
@@ -77,6 +80,51 @@ const page = () => {
     setPasswordVisible(prevState => !prevState);
   };
  
+  const login = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+signinfunction(tokenResponse.access_token)
+    },
+    onFailure: error => console.error(error),
+    // scope: 'profile email',
+  });
+
+ async function signinfunction(mytoken){
+    try {
+      const response = await axios.post('http://localhost:8000/api/auth/google/', {
+        token: mytoken,
+      });
+
+      // console.localStorage(response.data.user);
+      localStorage.setItem('access_token', response.data.access);
+      localStorage.setItem('refresh_token', response.data.refresh);
+      Cookies.set('access_token', response.data.access, { expires: 14 });
+      Cookies.set('refresh_token', response.data.refresh, { expires: 14 });
+      const token = response.data.access;
+      const arrayToken = token.split('.');
+      const tokenPayload = JSON.parse(atob(arrayToken[1]));
+      console.log(tokenPayload);
+      setIsloading(false);
+      fetchCompanySetup();
+      let params = new URLSearchParams(window.location.search);
+      let nexturl = params.get('next');
+      setTimeout(function() {
+        if(nexturl){
+          window.location.href = nexturl
+          router.replace(nexturl)
+        }else{
+          window.location.href = '/dashboard'
+          router.replace('/dashboard')
+        }
+      
+      }, 1500);
+
+      // Store the tokens in local storage or state management library
+      // localStorage.setItem('access_token', response.data.access);
+      // localStorage.setItem('refresh_token', response.data.refresh);
+    } catch (error) {
+      console.error("Failed to fetch user data", error);
+    }
+  }
   return (
 
 <div className="container flex">
@@ -113,6 +161,7 @@ const page = () => {
         </div>
       </div>
       <p />
+      
       <div className="loginfrm">
         <label htmlFor="password">Password</label>
         <div className="inp">
@@ -149,7 +198,17 @@ const page = () => {
  
       
       </div>
-
+<button onClick={() => login()}>sss</button>
+<GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+    // signinfunction(credentialResponse.credential)
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+  useOneTap
+/>
       <div className='already'>Dont have an account ?       <Link
             href='/auth/register'
           >
