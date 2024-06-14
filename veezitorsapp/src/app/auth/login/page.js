@@ -16,6 +16,7 @@ import { VeeContext } from '@/context/veecontext';
 const page = () => {
   const router = useRouter()
   const url = 'https://veezitorbackend.vercel.app/token/';
+  const baseurl = 'https://veezitorbackend.vercel.app'
   const [firstName, setFirstName] = useState('');
   const [isLoading, setIsloading] = useState(false);
   const [password, setPassword] = useState('');
@@ -87,6 +88,45 @@ signinfunction(tokenResponse.access_token)
     onFailure: error => console.error(error),
     // scope: 'profile email',
   });
+
+  async function ssosigninfunction(mytoken){
+    try {
+      const response = await axios.post(`${baseurl}/api/auth/googletoken/`, {
+        token: mytoken,
+      });
+
+      // console.localStorage(response.data.user);
+      localStorage.setItem('access_token', response.data.access);
+      localStorage.setItem('refresh_token', response.data.refresh);
+      Cookies.set('access_token', response.data.access, { expires: 14 });
+      Cookies.set('refresh_token', response.data.refresh, { expires: 14 });
+      const token = response.data.access;
+      const arrayToken = token.split('.');
+      const tokenPayload = JSON.parse(atob(arrayToken[1]));
+      console.log(tokenPayload);
+      setIsloading(false);
+      fetchCompanySetup();
+      let params = new URLSearchParams(window.location.search);
+      let nexturl = params.get('next');
+      setTimeout(function() {
+        if(nexturl){
+          window.location.href = nexturl
+          router.replace(nexturl)
+        }else{
+          window.location.href = '/dashboard'
+          router.replace('/dashboard')
+        }
+      
+      }, 1500);
+
+      // Store the tokens in local storage or state management library
+      // localStorage.setItem('access_token', response.data.access);
+      // localStorage.setItem('refresh_token', response.data.refresh);
+    } catch (error) {
+      console.error("Failed to fetch user data", error);
+    }
+  }
+
 
  async function signinfunction(mytoken){
     try {
@@ -202,7 +242,7 @@ signinfunction(tokenResponse.access_token)
 <GoogleLogin
   onSuccess={credentialResponse => {
     console.log(credentialResponse);
-    // signinfunction(credentialResponse.credential)
+    ssosigninfunction(credentialResponse.credential)
   }}
   onError={() => {
     console.log('Login Failed');
