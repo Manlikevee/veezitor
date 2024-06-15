@@ -244,6 +244,7 @@ signinfunction(tokenResponse.access_token)
           console.log(credentialResponse);
           ssosigninfunction(credentialResponse.credential)
         }}
+        width={'100%'}
         onError={() => {
           console.log('Login Failed');
         }}
