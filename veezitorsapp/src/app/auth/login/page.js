@@ -4,7 +4,6 @@ import React, { useState , useContext} from 'react'
 import { Toaster, toast } from 'sonner'
 import { GoogleLogin } from '@react-oauth/google';
 import { useGoogleLogin } from '@react-oauth/google';
-import { useGoogleOneTapLogin } from '@react-oauth/google';
 import Image from 'next/image';
 import mylogo from '../../../../public/InvestmentOneLogo.png'
 import Link from 'next/link';
@@ -239,16 +238,18 @@ signinfunction(tokenResponse.access_token)
       
       </div>
 <button onClick={() => login()}>sss</button>
-<GoogleLogin
-  onSuccess={credentialResponse => {
-    console.log(credentialResponse);
-    ssosigninfunction(credentialResponse.credential)
-  }}
-  onError={() => {
-    console.log('Login Failed');
-  }}
-  useOneTap
-/>
+<div style={{ width: '100%' }}>
+      <GoogleLogin
+        onSuccess={credentialResponse => {
+          console.log(credentialResponse);
+          ssosigninfunction(credentialResponse.credential)
+        }}
+        onError={() => {
+          console.log('Login Failed');
+        }}
+        useOneTap
+      />
+    </div>
       <div className='already'>Dont have an account ?       <Link
             href='/auth/register'
           >
