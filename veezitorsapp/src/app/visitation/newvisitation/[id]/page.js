@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState, useContext } from 'react';
 import dynamic from 'next/dynamic';
 import mylogo from '../../../../../public/newicn.png'
 import Image from 'next/image';
+import empty from '../../../../../public/vmstwo.png'
 import { useParams } from 'next/navigation';
 import { VeeContext } from '@/context/veecontext';
 import { Toaster, toast } from 'sonner'
@@ -14,6 +15,7 @@ const DynamicVisitorsform = dynamic(() => import('@/components/utility/Visitorsf
 const page = () => {
   const router = useRouter()
   const { id } = useParams();
+  const [allowVisitor, setAllowVisitor] = useState(true);
   const [number, setNumber] = useState();
   const [isValid, setIsValid] = useState(false);
   const [isloading, setisloading] = useState(false);
@@ -27,6 +29,65 @@ const page = () => {
     var standardizedNumber = phoneNumber.replace(/\D/g, '');
     return standardizedNumber;
 }
+
+function formatTime(timeStr) {
+  // Parse the input time string
+  let [hours, minutes, seconds] = timeStr.split(':').map(Number);
+  
+  // Determine AM/PM
+  let period = hours >= 12 ? 'pm' : 'am';
+  
+  // Convert to 12-hour format
+  hours = hours % 12 || 12; // Convert 0 to 12 for 12 AM
+
+  // Format the time to the desired format
+  return `${hours}${period}`;
+}
+
+const checkTimeRange = (timeIn, timeOut) => {
+  console.log('timerannnnnnn')
+  const currentTime = new Date();
+  const currentHours = currentTime.getHours();
+  const currentMinutes = currentTime.getMinutes();
+  const currentSeconds = currentTime.getSeconds();
+
+  // Convert time_in and time_out to Date objects
+  const timeInArray = timeIn.split(':');
+  const timeOutArray = timeOut.split(':');
+
+  const startTime = new Date();
+  startTime.setHours(parseInt(timeInArray[0], 10));
+  startTime.setMinutes(parseInt(timeInArray[1], 10));
+  startTime.setSeconds(parseInt(timeInArray[2], 10));
+
+  const endTime = new Date();
+  endTime.setHours(parseInt(timeOutArray[0], 10));
+  endTime.setMinutes(parseInt(timeOutArray[1], 10));
+  endTime.setSeconds(parseInt(timeOutArray[2], 10));
+
+  const currentTimeInSeconds = currentHours * 3600 + currentMinutes * 60 + currentSeconds;
+  const startTimeInSeconds = startTime.getHours() * 3600 + startTime.getMinutes() * 60 + startTime.getSeconds();
+  const endTimeInSeconds = endTime.getHours() * 3600 + endTime.getMinutes() * 60 + endTime.getSeconds();
+
+  if (startTimeInSeconds <= endTimeInSeconds) {
+      // Time range does not cross midnight
+      if (currentTimeInSeconds >= startTimeInSeconds && currentTimeInSeconds <= endTimeInSeconds) {
+          setAllowVisitor(true);
+         
+      } else {
+          setAllowVisitor(false);
+          toast.info('Please check back during our visitation hours,')
+      }
+  } else {
+      // Time range crosses midnight
+      if (currentTimeInSeconds >= startTimeInSeconds || currentTimeInSeconds <= endTimeInSeconds) {
+          setAllowVisitor(true);
+      } else {
+          setAllowVisitor(false);
+          toast.info('Please check back during our visitation hours,')
+      }
+  }
+};
 
 
 const posthData = async () => {
@@ -81,6 +142,7 @@ const posthData = async () => {
           const response = await axios.get(`https://veezitorbackend.vercel.app/SearchCompany?company_id=${id}`);
           setCompanyData(response.data);
           setCompanyref(response.data.ref)
+          checkTimeRange(response.data.time_in, response.data.time_out);
           console.log('responseeee', response)
           setError(false)
         } catch (error) {
@@ -123,7 +185,11 @@ const posthData = async () => {
       </div>
       <small> To log your appointment, please provide the following:</small>
     </div>
-    <div className="loginfrm">
+
+    {allowVisitor && (
+
+      <>
+          <div className="loginfrm">
       <label htmlFor="phone">Staff's Phone Number</label>
       <div className="inp">
         {/* <span class="material-symbols-outlined">phone</span> */}
@@ -154,7 +220,25 @@ const posthData = async () => {
    
    
     </div>
+      
+      </>
+    )}
+
+{!allowVisitor && (
+
+<div className='loginfrm myfnt'> 
+<Image
+         width={'100%'}
+         height={190}
+         src={empty} alt="" />
+
+Please check back during our visitation hours, 
+  <button>   From {formatTime(companyData?.time_in)} to {formatTime(companyData?.time_out)}. <span className='loading-spinner'></span> </button>
+ 
+     </div>)}
+   
     <br />
+
     <div
       className="rem"
       style={{

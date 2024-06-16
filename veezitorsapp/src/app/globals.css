@@ -2737,7 +2737,12 @@ transition: 0.2s ease-in-out;
     .visitorsolution{
         font-family: Nunito Sans;
     }
-    
+    .myfnt img{
+        align-self: center;
+        width: 100%;
+        height: fit-content;
+        object-fit: contain;
+    }
     
     .solgrid{
         font-family: Nunito Sans;
@@ -3347,6 +3352,20 @@ transition: 0.2s ease-in-out;
 .nodata{
     margin: 0;
 }
+    .myfnt{
+        font-family: Space Grotesk;
+        display: flex;
+        gap: 10px;
+        font-size: 15px;
+        align-items: center;
+    }
+
+    .myfnt button{
+        font-family: Space Grotesk;
+        display: flex;
+        gap: 10px;
+        font-size: 13px;
+    }
     
 .shimmers a, .shimmers .exportbtn, .shimmers .dashcard , .shimmers .dashnumber, .shimmers .tag, .shimmers .acc{
     -webkit-animation: shimmer 1.9s ease infinite;
