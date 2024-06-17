@@ -15,7 +15,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation'
 import Acceptvisit from "@/components/utility/Acceptvisit";
 const ClearSearchParams = dynamic(() => import('@/components/utility/ClearSearchParams'), { ssr: false });
-const DynamicQrcard = dynamic(() => import('../../components/myqrrpopup'), {
+const DynamicQrcard = dynamic(() => import('../../components/Userqrpop'), {
   ssr: false,
 });
 const page = () => {
@@ -24,7 +24,7 @@ const page = () => {
   const [myArray, setMyArray] = useState([]);
   const [activeTag, setActiveTag] = useState("allEmployeesContent");
   const [username, setUsername] = useState("");
-  const [activepop, setactivepop] = useState("");
+  const [activepop, setactivepop] = useState(false);
   const [myurl, setmyurl] = useState("");
 
   const copyToClipboard = async () => {
@@ -34,8 +34,9 @@ const page = () => {
       const decodedToken = jwtDecode(accessdatatoken);
       const textToCopy = `${window.location.protocol}//${window.location.host}/visitation/newvisitation/${decodedToken?.data?.ref}`
       await navigator.clipboard.writeText(textToCopy);
-      setmyurl(textToCopy)
-
+      setmyurl(textToCopy);
+      handlymysow();
+     
  toast.success('Copied To Clipboard')
     } catch (err) {
      
@@ -46,6 +47,10 @@ const page = () => {
 
   };
 
+
+  function handlymysow(){
+    setactivepop(!activepop)
+  }
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const accessToken = Cookies.get('access_token');
@@ -79,6 +84,10 @@ const page = () => {
     <Dashboardlayout>
       <Acceptvisit togglevisitorbar={togglevisitorbar} acceptvisitor={acceptvisitor}  />
       {/* <Updateprofilemodal/> */}
+
+      {
+activepop && (<DynamicQrcard data={myurl}  togglemyqr={handlymysow} />)
+      }
       <div className="sectionheader">
         <div className="sectiontitle col">
           <div>

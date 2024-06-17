@@ -4,14 +4,15 @@ import React from 'react'
 // import Linkqrcard from '@/components/qrcodecard/Linkqrcard';
 
 
-const Myqrrpopup = ({data}) => {
+const Userqrpop = ({data, togglemyqr}) => {
 
     
   return (
     <div className="loading-over2 mytagqr" style={{ display: "flex" }}>
 <div className="containerqr">
 {/* <Linkqrcard data={data} /> */}
-  <div className="textqr">
+{data}
+  <div className="textqr" onClick={togglemyqr}>
     <h1 className="headerqr">
       Veetec
     </h1>
@@ -24,4 +25,4 @@ const Myqrrpopup = ({data}) => {
   )
 }
 
-export default Myqrrpopup
+export default Userqrpop
