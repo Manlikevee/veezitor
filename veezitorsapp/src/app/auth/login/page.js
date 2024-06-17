@@ -6,6 +6,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { useGoogleLogin } from '@react-oauth/google';
 import Image from 'next/image';
 import mylogo from '../../../../public/InvestmentOneLogo.png'
+import google from '../../../../public/google.png'
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
@@ -237,14 +238,25 @@ signinfunction(tokenResponse.access_token)
  
       
       </div>
-<button onClick={() => login()}>sss</button>
-<div style={{ width: '100%' }}>
+
+      <div className='already'> Or    
+
+   
+        </div>
+<button className='googlebtn' onClick={() => login()}>
+<Image
+         width={32}
+         height={30}
+         src={google} alt="" />
+
+    Login With Google</button>
+<div style={{ width: '100%', display:'none' }}>
       <GoogleLogin
         onSuccess={credentialResponse => {
           console.log(credentialResponse);
           ssosigninfunction(credentialResponse.credential)
         }}
-        width={'100%'}
+        // width={280}
         onError={() => {
           console.log('Login Failed');
         }}
