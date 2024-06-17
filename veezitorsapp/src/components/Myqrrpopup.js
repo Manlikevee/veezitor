@@ -2,18 +2,17 @@
 'use client'
 import React from 'react'
 import dynamic from 'next/dynamic';
+import Linkqrcard from '@/components/qrcodecard/Linkqrcard';
 
-const dynamicLinkqrcard = dynamic(() => import('@/components/qrcodecard/Linkqrcard'), { ssr: false });
 
-const Myqrrpopup = ({data,  handleshowpop}) => {
+const Myqrrpopup = ({data}) => {
 
     
   return (
     <div className="loading-over2 mytagqr" style={{ display: "flex" }}>
 <div className="containerqr">
-<dynamicLinkqrcard data={data} />
+<Linkqrcard data={data} />
   <div className="textqr">
-    <small onClick={handleshowpop}>Close</small>
     <h1 className="headerqr">
       Veetec
     </h1>

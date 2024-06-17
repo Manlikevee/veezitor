@@ -14,7 +14,8 @@ import Cookies from "js-cookie";
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation'
 import Acceptvisit from "@/components/utility/Acceptvisit";
-import Myqrrpopup from "@/components/myqrrpopup";
+
+const Dynamiccarp = dynamic(() => import('@/components/myqrrpopup'), { ssr: false });
 const ClearSearchParams = dynamic(() => import('@/components/utility/ClearSearchParams'), { ssr: false });
 const page = () => {
   const {visitordataloaded, isOpen, test, setTest,  fetchvisitors,  acceptvisitor, visitors , awaiting, pendingApproval, reshedule, inProgress, employeedataloaded, togglevisitorbar } = useContext(VeeContext);
@@ -86,7 +87,7 @@ const page = () => {
       <Acceptvisit togglevisitorbar={togglevisitorbar} acceptvisitor={acceptvisitor}  />
       {/* <Updateprofilemodal/> */}
    {
-    showmypop && (<Myqrrpopup  data={weburl} handleshowpop={handleshowpop}/>)
+    showmypop && (<Dynamiccarp  data={weburl} handleshowpop={handleshowpop}/>)
    }   
       <div className="sectionheader">
         <div className="sectiontitle col">
