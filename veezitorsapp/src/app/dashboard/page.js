@@ -14,15 +14,16 @@ import Cookies from "js-cookie";
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation'
 import Acceptvisit from "@/components/utility/Acceptvisit";
+import Myqrrpopup from "@/components/myqrrpopup";
 const ClearSearchParams = dynamic(() => import('@/components/utility/ClearSearchParams'), { ssr: false });
-
 const page = () => {
   const {visitordataloaded, isOpen, test, setTest,  fetchvisitors,  acceptvisitor, visitors , awaiting, pendingApproval, reshedule, inProgress, employeedataloaded, togglevisitorbar } = useContext(VeeContext);
   const [firstName, setFirstName] = useState("");
   const [myArray, setMyArray] = useState([]);
   const [activeTag, setActiveTag] = useState("allEmployeesContent");
   const [username, setUsername] = useState("");
-
+  const [showmypop, setshowmypop] = useState("");
+  const [weburl, setweburl] = useState("");
 
 
   const copyToClipboard = async () => {
@@ -32,6 +33,11 @@ const page = () => {
       const decodedToken = jwtDecode(accessdatatoken);
       const textToCopy = `${window.location.protocol}//${window.location.host}/visitation/newvisitation/${decodedToken?.data?.ref}`
       await navigator.clipboard.writeText(textToCopy);
+      setweburl(textToCopy)
+      if (decodedToken?.data?.ref){
+        handleshowpop()
+      }
+      
 
  toast.success('Copied To Clipboard')
     } catch (err) {
@@ -70,12 +76,18 @@ const page = () => {
   const handleTagClick = (targetId) => {
     setActiveTag(targetId);
   };
+  const handleshowpop = () => {
+    setshowmypop(!showmypop);
+  };
 
 
   return (
     <Dashboardlayout>
       <Acceptvisit togglevisitorbar={togglevisitorbar} acceptvisitor={acceptvisitor}  />
       {/* <Updateprofilemodal/> */}
+   {
+    showmypop && (<Myqrrpopup  data={weburl}/>)
+   }   
       <div className="sectionheader">
         <div className="sectiontitle col">
           <div>
