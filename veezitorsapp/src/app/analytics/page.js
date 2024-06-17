@@ -2,7 +2,7 @@
 import Dashboardlayout from '@/components/layouts/Dashboardlayout'
 import Employeetable from '@/components/tables/Employeetable'
 import { VeeContext } from '@/context/veecontext';
-import React, { useContext, useState } from 'react'
+import React, { useRef, useContext, useState } from 'react'
 import NewEmployeeForm from '@/components/utility/NewEmployeeForm';
 import vector from '../../../public/Group (4).png'
 import Image from 'next/image';
@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import Dashboardcard from '@/components/cards/Dashboardcard';
-
+import { useScreenshot, createFileName } from "use-react-screenshot";
 
 const page = () => {
     //  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -41,9 +41,25 @@ const page = () => {
             },
         },
     };
+
+    const ref = useRef(null)
+    const [image, takeScreenShot] = useScreenshot({
+      type: "image/jpeg",
+      quality: 1.0
+    });
+  
+    const download =  (image, { name = "img", extension = "jpg" } = {}) => {
+      const a = document.createElement("a");
+      a.href = image;
+      a.download = createFileName(extension, name);
+      a.click();
+    };
+  
+    const downloadScreenshot = () => takeScreenShot(ref.current).then(download);
+
   return (
     <Dashboardlayout>
-
+ <img width='120' src={image} alt={'Screenshot'} />
 <div className="dashs">
         <Dashboardcard
           iconname={"barcode_reader"}
@@ -61,9 +77,11 @@ const page = () => {
           value={"0"}
         />
       </div>
-
+      <button style={{ marginBottom: '10px' }} onClick={downloadScreenshot}>
+          Take screenshot
+        </button>
 {!loadingmonthlyvisitors ? (
-<div className='mybar'>
+<div className='mybar' ref={ref} >
 <Bar data={data} options={options} />
 </div>
 
