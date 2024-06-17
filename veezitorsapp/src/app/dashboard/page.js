@@ -86,7 +86,7 @@ const page = () => {
       <Acceptvisit togglevisitorbar={togglevisitorbar} acceptvisitor={acceptvisitor}  />
       {/* <Updateprofilemodal/> */}
    {
-    showmypop && (<Myqrrpopup  data={weburl}/>)
+    showmypop && (<Myqrrpopup  data={weburl} handleshowpop={handleshowpop}/>)
    }   
       <div className="sectionheader">
         <div className="sectiontitle col">

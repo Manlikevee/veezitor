@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 
 const dynamicLinkqrcard = dynamic(() => import('@/components/qrcodecard/Linkqrcard'), { ssr: false });
 
-const Myqrrpopup = ({data}) => {
+const Myqrrpopup = ({data,  handleshowpop}) => {
 
     
   return (
@@ -13,6 +13,7 @@ const Myqrrpopup = ({data}) => {
 <div className="containerqr">
 <dynamicLinkqrcard data={data} />
   <div className="textqr">
+    <small onClick={handleshowpop}>Close</small>
     <h1 className="headerqr">
       Veetec
     </h1>
