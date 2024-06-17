@@ -13,6 +13,7 @@ const DynamicVisitorsform = dynamic(() => import('@/components/utility/Visitorsf
   ssr: false,
 });
 const page = () => {
+  const fallbackLogo = 'https://github.com/Manlikevee/veezitor/blob/main/veezitorsapp/public/newicn.png?raw=true';
   const router = useRouter()
   const { id } = useParams();
   const [allowVisitor, setAllowVisitor] = useState(true);
@@ -177,10 +178,12 @@ const posthData = async () => {
   <div className="visitorsform">
     <div className="sectiontitle col">
       <div className="sidebarlogo">
-      <Image
-         width={100}
-         height={100}
-         src={mylogo} alt="" />
+      <img
+            width={100}
+            height={100}
+            src={companyData?.logo || fallbackLogo}
+            alt={companyData?.name || 'Default Company Logo'}
+        />
           {companyData?.organization_name || 'Vizitors'}
       </div>
       <small> To log your appointment, please provide the following:</small>
