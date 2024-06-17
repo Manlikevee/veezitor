@@ -13,13 +13,14 @@ import Dashboardcard from '@/components/cards/Dashboardcard';
 
 
 const page = () => {
-     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    
+    //  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+     const { monthlyvisitors, loadingmonthlyvisitors } = useContext(VeeContext);
+  
     // Dummy data for visitors per month
-    const visitorCounts = [12, 19, 3, 5, 2, 3, 30, 45, 22, 17, 29, 10];
+    const visitorCounts = monthlyvisitors;
 
     const data = {
-        labels: months,
+        // labels: months,
         datasets: [
             {
                 label: 'Visitors',
@@ -61,9 +62,13 @@ const page = () => {
         />
       </div>
 
+{!loadingmonthlyvisitors ? (
 <div className='mybar'>
 <Bar data={data} options={options} />
 </div>
+
+) : ('Loading.....') }
+
 
 
         </Dashboardlayout>

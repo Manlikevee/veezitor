@@ -44,6 +44,11 @@ export const VeeContextProvider = ({ children }) => {
   const [sideloading, setsideloading] = useState(true)
   const [visitationdata, setVisitationdata] = useState([]);
   const [loadingaccept, setloadingaccept] = useState(false)
+  const [Uniquevisitors, setUniquevisitors] = useState([]);
+  const [monthlyvisitors, setmonthlyvisitors] = useState([]);
+  const [loadingmonthlyvisitors, setIsloadingmonthlyvisitors] = useState(true);
+
+  
   const toggleSidebar = () => {
     setIsSidebarOpen((prevState) => !prevState);
     setIsOverlayOpen((prevState) => !prevState);
@@ -506,6 +511,7 @@ if (ref){
         setLoading(false);
         setLoadingqr(true);
         setemployeedataloaded(true);
+        fetchmonthlyvisitors();
         const myvisitors = response?.data?.visitor_serializer
    
         if(myvisitors){
@@ -549,6 +555,92 @@ if (ref){
 
   };
 
+  async function fetchuniquevisitors() {
+
+    let accessToken = Cookies.get("access_token");
+    if(accessToken){
+      try {
+        setLoading(true);
+        const response = await axiosInstance.get("/unique");
+        console.log("it rannnn", response.data); // Assuming the response data contains useful 
+        setUniquevisitors(response?.data);
+        return response.data; // Return the data for further use if needed
+      } catch (error) {
+        setLoading(false);
+        if (axios.isAxiosError(error) && error.response?.status === 404) {
+          toast.info("Kindly Setup Your Company Info.");
+          setError(true);
+        } else {
+          console.error(`An error occurred: ${error.message}`);
+          toast.error(`An error occurred: ${error.message}`);
+        }
+        // Optionally, handle the error in a way that suits your application
+        // throw error; // Rethrow the error if you want to handle it later
+      }
+    }
+
+
+
+  };
+
+  // async function fetchuniquevisitors() {
+
+  //   let accessToken = Cookies.get("access_token");
+  //   if(accessToken){
+  //     try {
+  //       setLoading(true);
+  //       const response = await axiosInstance.get("/unique");
+  //       console.log("it rannnn", response.data); // Assuming the response data contains useful 
+  //       setUniquevisitors(response?.data);
+  //       return response.data; // Return the data for further use if needed
+  //     } catch (error) {
+  //       setLoading(false);
+  //       if (axios.isAxiosError(error) && error.response?.status === 404) {
+  //         toast.info("Kindly Setup Your Company Info.");
+  //         setError(true);
+  //       } else {
+  //         console.error(`An error occurred: ${error.message}`);
+  //         toast.error(`An error occurred: ${error.message}`);
+  //       }
+  //       // Optionally, handle the error in a way that suits your application
+  //       // throw error; // Rethrow the error if you want to handle it later
+  //     }
+  //   }
+
+
+
+  // };
+
+
+  async function fetchmonthlyvisitors() {
+
+    let accessToken = Cookies.get("access_token");
+    if(accessToken){
+      try {
+        setIsloadingmonthlyvisitors(true);
+        const response = await axiosInstance.get("/visitors/monthly/");
+        console.log("it rannnn", response.data); // Assuming the response data contains useful 
+        setmonthlyvisitors(response?.data);
+        setIsloadingmonthlyvisitors(false)
+        return response.data; // Return the data for further use if needed
+      } catch (error) {
+        setIsloadingmonthlyvisitors(false)
+        if (axios.isAxiosError(error) && error.response?.status === 404) {
+          toast.info("Kindly Setup Your Company Info.");
+   
+        } else {
+          console.error(`An error occurred: ${error.message}`);
+          toast.error(`An error occurred: ${error.message}`);
+        }
+        // Optionally, handle the error in a way that suits your application
+        // throw error; // Rethrow the error if you want to handle it later
+      }
+    }
+
+
+
+  };
+
   useEffect(() => {
     // Filter visitors data into separate variables based on status
     const pendingVisitors = visitors.filter(
@@ -575,6 +667,8 @@ if (ref){
   useEffect(() => {
     checkusername();
     fetchuserdata();
+    fetchuniquevisitors() ;
+  
       // fetchEmployeeData();
     // fetchqrcode();
     // fetchvisitors();
@@ -643,7 +737,11 @@ if (ref){
         visitationdata,
         acceptvisitor,
         loadingaccept,
-        signout
+        signout,
+        Uniquevisitors, 
+        setUniquevisitors,
+        monthlyvisitors,
+        loadingmonthlyvisitors
       }}
     >
       {children}

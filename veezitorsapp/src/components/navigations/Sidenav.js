@@ -82,7 +82,7 @@ const Sidenav = ({mylogo}) => {
           <div className="dashflextext">Employees</div>
         </Link>
         <div>
-          <Link href="#" className={`dashflex ${pathname === '/qrcode' ||  pathname === '/analytics' ? 'active' : ''}`}    onClick={dropdown}>
+          <Link href="#" className={`dashflex ${pathname === '/qrcode' ||  pathname === '/visitorslist' ||  pathname === '/analytics' ? 'active' : ''}`}    onClick={dropdown}>
             <div className="dashflexicon">
               <span className="material-symbols-outlined"> summarize </span>
             </div>
@@ -110,7 +110,7 @@ const Sidenav = ({mylogo}) => {
                 </div>
                 <div className="dashflextext">Vendor</div>
               </Link>
-              <Link href="#" className="dashflex">
+              <Link href="/visitorslist" className="dashflex">
                 <div className="dashflexicon">
                   <span className="material-symbols-outlined">
                     fact_check
