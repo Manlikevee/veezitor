@@ -3824,7 +3824,10 @@ padding: 16px;
         justify-content: center;
         align-items: center;
       } */
-      
+      .mytagqr span{
+        font-size: 28px;
+        cursor: pointer;
+      }
       .mytagqr    .containerqr {
         background-color: hsl(0, 0%, 100%);
         border-radius: 20px;
@@ -3851,13 +3854,18 @@ padding: 16px;
         color: hsl(218, 44%, 22%);
         text-align: center;
         font-size: 1.5rem;
+        font-family: Space Grotesk;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
       }
       
       .mytagqr  .descriptionqr {
-        margin: 1rem 0;
-        font-size: 15px;
+        color: #6B788E;
+        font-size: 13px;
         font-weight: 400;
-        color: hsl(220, 15%, 55%);
+        line-height: 20px;
+        text-align: left;
         text-align: center;
       }
       

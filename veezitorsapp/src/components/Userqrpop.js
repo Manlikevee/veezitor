@@ -5,7 +5,7 @@ import Linkqrcard from '@/components/qrcodecard/Linkqrcard';
 import { useScreenshot, createFileName } from "use-react-screenshot";
 
 
-const Userqrpop = ({data, togglemyqr}) => {
+const Userqrpop = ({data, togglemyqr, companySetup}) => {
   const ref = createRef(null);
   const [image, takeScreenShot] = useScreenshot({
     type: "image/jpeg",
@@ -25,16 +25,20 @@ const Userqrpop = ({data, togglemyqr}) => {
   return (
     <div className="loading-over2 mytagqr" style={{ display: "flex" }} ref={ref}>
 <div className="containerqr">
+<span onClick={downloadScreenshot} className="material-symbols-outlined">
+download
+</span>
 <Linkqrcard data={data} />
 
   <div className="textqr" onClick={togglemyqr}>
     <h1 className="headerqr">
-      Veetec
+    {companySetup?.organization_name}
     </h1>
     <p className="descriptionqr">
-      Scan the QR code to start your visitation request
+    Please scan the QR code below to start the process of requesting your visit. We look forward to welcoming you!
     </p>
-    <button onClick={downloadScreenshot}>Download screenshot</button>
+
+  
   </div>
 </div>
 </div>

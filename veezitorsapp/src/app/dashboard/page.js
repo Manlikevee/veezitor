@@ -19,7 +19,7 @@ const DynamicQrcard = dynamic(() => import('../../components/Userqrpop'), {
   ssr: false,
 });
 const page = () => {
-  const {visitordataloaded, isOpen, test, setTest,  fetchvisitors,  acceptvisitor, visitors , awaiting, pendingApproval, reshedule, inProgress, employeedataloaded, togglevisitorbar } = useContext(VeeContext);
+  const {visitordataloaded, isOpen, test, setTest, companySetup, fetchvisitors,  acceptvisitor, visitors , awaiting, pendingApproval, reshedule, inProgress, employeedataloaded, togglevisitorbar } = useContext(VeeContext);
   const [firstName, setFirstName] = useState("");
   const [myArray, setMyArray] = useState([]);
   const [activeTag, setActiveTag] = useState("allEmployeesContent");
@@ -82,11 +82,11 @@ const page = () => {
 
   return (
     <Dashboardlayout>
-      <Acceptvisit togglevisitorbar={togglevisitorbar} acceptvisitor={acceptvisitor}  />
+      <Acceptvisit togglevisitorbar={togglevisitorbar} acceptvisitor={acceptvisitor}   />
       {/* <Updateprofilemodal/> */}
 
       {
-activepop && (<DynamicQrcard data={myurl}  togglemyqr={handlymysow} />)
+activepop && (<DynamicQrcard data={myurl}  togglemyqr={handlymysow} companySetup={companySetup}   />)
       }
       <div className="sectionheader">
         <div className="sectiontitle col">
