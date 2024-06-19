@@ -41,6 +41,7 @@ object-fit: contain;
     padding: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
+
 }
 .landingheader .landingcontainer{
     display: flex;
@@ -49,6 +50,7 @@ object-fit: contain;
     padding: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
+
 }
 .landingheader .links {
     display: flex;
@@ -98,6 +100,7 @@ text-align: left;
     min-height: 100vh;
 
     display: flex;
+
  
 }
 
@@ -850,5 +853,177 @@ margin: auto;
         padding: 5px;
         z-index: 999;
         border: 1.05px solid var(--Stroke-3, #D9DEDD);
+    }
+}
+
+.newhero{
+    background-image: url(backgroundpattern-c0621009.png);
+    background-size: cover;
+    background-position: right;
+    background-repeat: repeat;
+    min-height: 100vh;
+width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bankworld {
+    color: var(--black, #0b0b0bf5);
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%;
+    text-transform: capitalize;
+}
+
+.newhero .container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    height: fit-content;
+    background-color: transparent !important;
+}
+.accent {
+
+    border-radius: 100px;
+    opacity: 0.8;
+    background: rgba(44, 179, 133, 0.08);
+    display: inline-flex;
+    padding: 8px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #2CB385;
+    margin: auto;
+    margin-top: 80px;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.newhero span {
+    color: #023047;
+    font-weight: 600;
+}
+
+.herosmalltext {
+    color: var(--para, #39393b);
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 160%;
+    max-width: 80%;
+    margin: auto;
+    font-family: Nunito Sans;
+}
+.mapco{
+    display: flex;
+}
+.tabimg{
+
+        width: 100%;
+        max-height: 299px;
+        object-fit: contain;
+        position: absolute;
+        top: 700px;
+        left: -372px;
+        max-height: 299px;
+ 
+}
+.smallimg {
+    width: 100%;
+    object-fit: contain;
+    max-height: 329px;
+    top: 30;
+    align-self: end;
+    margin-left: -160px;
+}
+.largeimg{
+    padding-top: 20px;
+    width: 100%;
+    object-fit: contain;
+}
+
+@media screen and (max-width:1280px) {
+    .smallimg,  .tabimg{
+        display: none;
+
+    }
+    .newhero .container{
+        height: fit-content !important;
+        min-height: fit-content !important;
+    }
+
+    .largeimg{
+        max-height: 500px;
+    }
+    /* .accent{
+        margin-top: 0;
+    } */
+    .newhero{
+        height: fit-content;
+        min-height: 70vh;
+        padding: 20px;
+    }
+    .bankworld {
+        color: var(--black, #0b0b0bf5);
+        text-align: center;
+  
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 114%;
+        text-transform: capitalize;
+    }
+}
+
+
+.whatis{
+display: flex;
+gap: 30px;
+width: 100%;
+padding-top: 60px;
+}
+
+.whatone{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.whatistwo{
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.whatone img{
+    width: 100%;
+    max-height: 400px;
+    
+
+}
+@media screen and (max-width:600px){
+    .bankworld {
+        color: var(--black, #0b0b0bf5);
+        text-align: center;
+
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 114%;
+        text-transform: capitalize;
+    }
+    .largeimg{
+        max-height: 400px;
     }
 }

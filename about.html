@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VEEzitor</title>
+    <link rel="stylesheet" href="vtoast.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,200,0,0"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+    <main>
+        <div class="landingheader">
+            <div class="landingcontainer">
+                <div class="headerlogo">
+                    <img src="Icon (8).png" alt="">VEEZITORS
+                </div>
+                <div class="links">
+                    <a href="about.html">
+                      About Us</a>
+                    <a href="services.html">
+                      Services</a>
+                    <a href="blog.html">
+                      Blog
+                    </a>
+                    <a href="training.html">
+                      Training
+                    </a>
+             
+                  </div>
+        
+                  <a href="" class="getstarted">
+                    <span class="material-symbols-outlined">
+                        lock
+                        </span> Get Started <span class="material-symbols-outlined">
+                            arrow_right_alt
+                            </span>
+                  </a>
+            </div>
+        </div>
+
+        <div class="newhero">
+            <div class="container">
+              <br>
+              <br>
+    
+
+              <div class="accent">Join over +35k community</div>
+              <div class="bankworld">
+                Welcome to <span>VEEZITORS</span>
+                <p></p>
+                Moderniz and Streamline Your Front Desk Section
+              </div>
+              <div class="herosmalltext">
+                Improve the visitor registration experience with our Touchless
+                visitor management system.
+              </div>
+              <div class="gstarted">Get Started Today</div>
+            </div>
+            <div class="mapco">
+              <img src="Galaxy-Tab-S7-veezitor.vercel.app.png" alt="" class="tabimg">
+              <img src="Macbook-Air-veezitor.vercel.app (1).png" alt="" class="largeimg">
+              <img src="iPhone-12-PRO-veezitor.vercel.app.png" alt="" class="smallimg">
+            </div>
+          </div>
+<br>
+<br>
+<br>
+<div class="landingcontainer">
+  <div class="whatis">
+<div class="whatone">
+  <img src="" alt="">
+</div>
+<div class="whatistwo">
+  <div class="whattitle">What is visitor management?</div>
+  <div class="whatbody">Visitor management is the process of monitoring and controlling access to a particular location or facility by visitors, contractors, and other non-employees. Automated visitor management system involves implementing systems and procedures that enable organizations to effectively manage visitor access, enhance security, and streamline visitor registration and visitor check-in process. </div>
+</div>
+  </div>
+</div>
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+
+
+
+
+
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const container = document.querySelector('.myteams');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+
+    prevButton.addEventListener('click', function() {
+        container.scrollBy({
+            left: -320, // Adjust the value based on your container width
+            behavior: 'smooth'
+        });
+    });
+
+    nextButton.addEventListener('click', function() {
+        container.scrollBy({
+            left: 320, // Adjust the value based on your container width
+            behavior: 'smooth'
+        });
+    });
+});
+
+
+function toggleFaq(faqId) {
+    const faqCard = document.getElementById(faqId);
+    const faqDescription = faqCard.querySelector('.faqdescription');
+    
+    // Close all other open faq descriptions
+    document.querySelectorAll('.faqdescription').forEach(description => {
+        if (description !== faqDescription && description.classList.contains('open')) {
+            description.style.height = '0px';
+            description.classList.remove('open');
+        }
+    });
+    
+    // Toggle the clicked faq description
+    if (faqDescription.classList.contains('open')) {
+        faqDescription.style.height = '0px';
+        faqDescription.classList.remove('open');
+    } else {
+        const height = faqDescription.scrollHeight + 'px';
+        faqDescription.style.height = height;
+        faqDescription.classList.add('open');
+    }
+}
+</script>
+<script>
+    function toggleAccordion(titleElement) {
+        // Get the parent .badgemodules element
+        const badgeModule = titleElement.parentNode.parentNode;
+        // Get all badgecontent elements
+        const allContents = document.querySelectorAll('.badgecontent');
+        
+        // Iterate through each .badgemodules element
+        allContents.forEach(content => {
+            // Close all except the current one
+            if (content.parentNode.parentNode !== badgeModule) {
+                content.classList.remove('active');
+                content.style.height = '0';
+            }
+        });
+        
+        // Toggle active class on the clicked .badgecontent element
+        const content = badgeModule.querySelector('.badgecontent');
+        content.classList.toggle('active');
+        
+        // Calculate the height of the .badgecontent element
+        const contentHeight = content.scrollHeight;
+        
+        // Set the height to the calculated height when opening
+        if (content.classList.contains('active')) {
+            content.style.height = contentHeight + "px";
+        } else {
+            // Set height to 0 when closing
+            content.style.height = '0';
+        }
+    }
+    
+    const images = [
+            'https://www.vizitorapp.com/images/vizitor/Digital-Document-Signing.svg',
+            'https://www.vizitorapp.com/images/vizitor/Badge-printing-for-visitor.svg',
+            'https://www.vizitorapp.com/images/vizitor/TouchlessQR1.svg',
+            'https://www.vizitorapp.com/images/vizitor/Pre-registration.svg',
+            'https://www.vizitorapp.com/images/vizitor/Pre-registration.svg',
+            'https://www.vizitorapp.com/images/vizitor/Approve-Disapprove-visitors.svg',
+            'https://www.vizitorapp.com/images/vizitor/Send&Recieve-Invites.svg',
+            'https://www.vizitorapp.com/images/vizitor/Add-organization.svg',
+            'https://www.vizitorapp.com/images/vizitor/Touchless-attendance.svg',
+            'https://www.vizitorapp.com/images/vizitor/Touchless-attendance.svg',
+       
+    
+        ]
+    
+    function selectimg(id){
+    
+        if (id >= 5){
+            document.getElementById('myimgtwo').src = images[id]
+        } else{
+            document.getElementById('myimg').src = images[id]
+        }
+    
+    }
+    </script>
+    <script src="tap.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+    <script src="axios.js"></script>
+    <script src="vtoast.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- <script src="script.js"></script>
+
+    <script src="login.js"></script> -->
+</body>
+</html>
