@@ -9,6 +9,7 @@ import { jwtDecode } from "jwt-decode";
 import Updateprofilemodal from '../utility/Updateprofilemodal';
 import { VeeContext } from '@/context/veecontext';
 import Visitationbar from '../navigations/Visitationbar';
+import Clock28 from '../Clock28';
 
 const Dashboardlayout = ({children}) => {
   const [showModal, setShowModal] = useState(false);
@@ -52,7 +53,25 @@ const Dashboardlayout = ({children}) => {
     setIsFullscreen(false);
   };
 
+  const [inactive, setInactive] = useState(false);
+  let timer;
+  const handleActivity = () => {
+    clearTimeout(timer);
+    setInactive(false);
+    timer = setTimeout(() => {
+      setInactive(true);
+    }, 300000);
+  };
 
+  useEffect(() => {
+    window.addEventListener('mousemove', handleActivity);
+
+    // Clean up event listeners on component unmount
+    return () => {
+      window.removeEventListener('mousemove', handleActivity);
+      clearTimeout(timer);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const isAuth = isAuthenticated;
@@ -80,7 +99,13 @@ const Dashboardlayout = ({children}) => {
 
   return (
     <>
-    
+   
+   {inactive &&
+     <div className={`overlay ${inactive ? 'overlayshow' : ''}`} >
+      
+      <Clock28/>
+
+       </div> }
 
     <div className={`overlay ${isOverlayOpen ? 'overlayshow' : ''}`} onClick={toggleSidebar} />
 
