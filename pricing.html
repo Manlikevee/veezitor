@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VEEzitor</title>
+    <link rel="stylesheet" href="vtoast.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,200,0,0"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+    <main>
+        <div class="landingheader">
+            <div class="landingcontainer">
+                <div class="headerlogo">
+                    <img src="Icon (8).png" alt="">VEEZITORS
+                </div>
+                <div class="links">
+                    <a href="about.html">
+                      About Us</a>
+                    <a href="services.html">
+                      Services</a>
+                    <a href="blog.html">
+                      Blog
+                    </a>
+                    <a href="training.html">
+                      Training
+                    </a>
+             
+                  </div>
+        
+                  <a href="" class="getstarted">
+                    <span class="material-symbols-outlined">
+                        lock
+                        </span> Get Started <span class="material-symbols-outlined">
+                            arrow_right_alt
+                            </span>
+                  </a>
+            </div>
+        </div>
+
+<div class="largehero">
+
+    <div class="bankworld ucasde">
+        Our Pricing
+       </div>
+</div>
+<div class="landingcontainer">
+    <div class="pricingtable" id="pricingtable">
+        <br>
+        <div class="bankworld ucasde">
+           Our Pricing
+          </div>
+        <div class="pricingfflex">
+            <div class="pricingtext">
+                <div class="comparetext">
+                    Compare plans?
+                    <p class="comparesubtext">
+                        Choose your workspace plan according to your organisational plan
+                    </p>
+                  
+                </div>
+              
+         
+                
+            </div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                 <div class="plantitle">
+                    <div class="headingt">
+                        Free<small>/Lifetime</small>
+                    </div>
+                    <button>Choose This Plan</button>
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                    <div class="plantitle">
+                        <div class="headingt">
+                            $25<small>/Month</small>
+                        </div>
+                        <button>Choose This Plan</button>
+                        </div>
+                </div>
+            </div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                    <div class="plantitle">
+                        <div class="headingt">
+                            $40<small>/Month</small>
+                        </div>
+                        <button>Choose This Plan</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="pricingfflex">
+            <div class="pricingtext mytablelabel">Number of Users</div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                    20 Pages
+                </div>
+            </div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                    20 Pages
+                </div>
+            </div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                    20 Pages
+                </div>
+            </div>
+        </div>
+        <div class="pricingfflex">
+            <div class="pricingtext mytablelabel">Includes essential features to get started</div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                   <img src="Vector (15).png" alt="">
+                </div>
+            </div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                    <img src="Vector (15).png" alt="">
+                </div>
+            </div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                    <img src="Vector (15).png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+<script>
+   const pricingPlans = [
+    { feature: "Email Support", free: false, pro: true, professional: true },
+    { feature: "Access to Premium Templates", free: false, pro: true, professional: true },
+    { feature: "Custom Branding", free: false, pro: true, professional: true },
+    { feature: "Visitor Analytics", free: true, pro: true, professional: true },
+    { feature: "Integration with Third-party Apps", free: false, pro: false, professional: true },
+    { feature: "Priority Support", free: false, pro: false, professional: true },
+    { feature: "Unlimited Visitors", free: true, pro: true, professional: true },
+    { feature: "Custom Reports", free: false, pro: false, professional: true },
+    { feature: "Multiple Locations", free: false, pro: true, professional: true }
+];
+
+function displayPlans() {
+    let pricingPlanDiv = document.getElementById('pricingtable');
+    
+    const eachPlan = pricingPlans.map(pplan => (
+        `
+        <div class="pricingfflex">
+            <div class="pricingtext mytablelabel">${pplan.feature}</div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                    ${pplan.free ? ' <img src="Vector (15).png" alt="">' : ''}
+                  
+                </div>
+            </div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                    ${pplan.pro ? ' <img src="Vector (15).png" alt="">' : ''}
+                </div>
+            </div>
+            <div class="pricingbody">
+                <div class="pbodytext">
+                    ${pplan.professional ? ' <img src="Vector (15).png" alt="">' : ''}
+                </div>
+            </div>
+        </div>`
+    )).join('');
+
+    pricingPlanDiv.innerHTML += eachPlan;
+}
+
+displayPlans();
+</script>
+
+<footer>
+  <div class="landingcontainer">
+    <div class="footertop">
+      <div class="footersideone">
+        <h3>Newsletter</h3>
+        <h4>Be the first one to know  about discounts, offers and events</h4>
+      </div>
+      <div class="footersidetwo">
+        <div class="footinput">
+          <span class="material-symbols-outlined">
+            mail
+            </span>
+          <input type="text">
+          <button class="fbtn">Submit</button>
+        </div>
+      </div>
+    </div>
+<br>
+
+    <div class="footerbottom">
+      <div class="fone">
+        <img src="Icon%20(8).png" alt=""> 
+  
+        <div class="landingbottom">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. <p>
+    
+        </p> </div>
+      </div>
+      <div class="ftwo">
+        <h3>Company</h3>
+        <div class="footlinks">
+          <div class="flink">About us</div>
+          <div class="flink">Blog</div>
+          <div class="flink">Careers</div>
+          <div class="flink">Jobs</div>
+        </div>
+      </div>
+      <div class="ftwo">
+        <h3>Help</h3>
+        <div class="footlinks">
+          <div class="flink">Customer Support</div>
+          <div class="flink">Terms & Conditions</div>
+          <div class="flink">Privacy Policy</div>
+       
+        </div>
+      </div>
+      <div class="ftwo">
+        <h3>Resources</h3>
+        <div class="footlinks">
+          <div class="flink">Youtube Playlist</div>
+          <div class="flink">How to - Blog</div>
+          <div class="flink">Development Tutorial</div>
+
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="footerline"></div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+    <script src="tap.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+    <script src="axios.js"></script>
+    <script src="vtoast.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- <script src="script.js"></script>
+
+    <script src="login.js"></script> -->
+</body>
+</html>
