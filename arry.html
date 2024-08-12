@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload</title>
+  <style>
+    .image-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .image-container img {
+      max-width: 100px;
+      max-height: 100px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <input type="file" id="fileInput" multiple>
+  <button onclick="processFiles()">Upload</button>
+  <div id="output"></div>
+
+  <script>
+    function processFiles() {
+      const input = document.getElementById('fileInput');
+      const files = input.files;
+
+      const processedImages = [];
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const fileName = file.name;
+
+        // Extract the company name by splitting the string
+        const companyName = fileName.split('=')[1].split('.')[0];
+
+        // Create the object with the company name and path
+        processedImages.push({
+          companyName: companyName,
+          imagePath: `/images/${fileName}`
+        });
+      }
+      console.log(processedImages)
+      // Display the array on the page
+      const output = document.getElementById('output');
+      output.innerHTML = ''; // Clear previous output
+      processedImages.forEach(image => {
+        const div = document.createElement('div');
+        div.className = 'image-container';
+
+        const img = document.createElement('img');
+        img.src = image.imagePath;
+        img.alt = image.companyName;
+
+        const info = document.createElement('div');
+        info.textContent = `Company: ${image.companyName}, Path: ${image.imagePath}`;
+
+        div.appendChild(img);
+        div.appendChild(info);
+        output.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+
+<script>
+  function addCustomStyles() {
+
+console.log('doeeeeeeeeeeeee')
+    // Create a new style element
+    var style = document.createElement('style');
+
+    // Add the CSS code to the style element
+    style.innerHTML = `
+    img.v-image.v-widget {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: none;
+}
+    `;
+
+    // Append the style element to the head of the document
+    document.head.appendChild(style);
+}    addCustomStyles();
+
+// Call the function after the DOM has fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    addCustomStyles();
+});
+</script>

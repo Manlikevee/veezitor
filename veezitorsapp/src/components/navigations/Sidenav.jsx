@@ -9,7 +9,7 @@ import { VeeContext } from '@/context/veecontext';
 
 const Sidenav = ({mylogo}) => {
   const {companySetup, loading, error, fetchCompanySetup, refreshAccessToken, checkusername, isSidebarOpen, isOverlayOpen, toggleSidebar } = useContext(VeeContext);
-
+  
   const [isLoading, setIsloading] = useState(false);
   const dropdownContentRef = useRef(null);
   const dropdown = () => {
@@ -187,6 +187,8 @@ const Sidenav = ({mylogo}) => {
         </div>
       </div>
     </div>
+
+
   </div>
 
   )

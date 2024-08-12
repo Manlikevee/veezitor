@@ -6,42 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    
-<div class="container" id="mycontainer" style="width: 100%; height: 70vh;">
 
-    <div id="title">
 
-    </div>
-</div>
-<button onclick="changebgcolor()">ssssssssss</button>
 
-<script>
-    let bgcolors = [
-  { "title": "Sunset Bliss", "color": "#FF5733" },
-  { "title": "Ocean Breeze", "color": "#33A1FF" },
-  { "title": "Lush Greenery", "color": "#33FF57" },
-  { "title": "Golden Sands", "color": "#FFC300" },
-  { "title": "Lavender Dreams", "color": "#B533FF" },
-  { "title": "Midnight Blue", "color": "#001F3F" },
-  { "title": "Cherry Blossom", "color": "#FF33A1" },
-  { "title": "Forest Trail", "color": "#228B22" },
-  { "title": "Autumn Leaves", "color": "#FF5733" },
-  { "title": "Skyline Gray", "color": "#A9A9A9" }
-]
 
-let active_color = 0
-    function changebgcolor(){
-const color_container = document.getElementById('mycontainer')
-const colorlength = bgcolors.length
-color_container.style.backgroundColor = bgcolors[active_color].color
-document.getElementById('title').innerHTML = bgcolors[active_color].title
-const mynewnuber = active_color + 1
-active_color = mynewnuber
-    }
+    <h1>Local Notifications</h1>
+    <button id="notify">Show Notification</button>
+    <script src="main.js"></script>
 
-    setInterval(changebgcolor, 5000);
 
-</script>
+
 
 </body>
 </html>

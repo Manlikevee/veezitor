@@ -128,11 +128,11 @@ async function approve() {
       console.log(response.data); // Assuming the response data contains useful information
       
     
-      if(response.data){
+      if(response.data)
        Cookies.set('userdata_token', response.data.token, { expires: 14 });
   
        refreshAccessToken();
-      }
+      
       setError(false)
    // Refresh the token after receiving the response
   

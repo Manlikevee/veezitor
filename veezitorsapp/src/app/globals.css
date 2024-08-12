@@ -1712,6 +1712,7 @@ width: 100%;
             position: absolute;
             transition: 0.5s ease;
             left: -46%;
+            z-index: 9999999;
         }
         .sectionheader{
             flex-direction: column;

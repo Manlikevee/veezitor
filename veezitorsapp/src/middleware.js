@@ -26,8 +26,8 @@ import { cookies } from 'next/headers'
 import { jwtDecode } from 'jwt-decode'
  
 // 1. Specify protected and public routes
-const protectedRoutes = ['/employees', '/dashboard', '/qrcodecard', '/profileupdate/:path*', '/qrcode'  ]
-const publicRoutes = ['/auth/login', '/auth/signup', '/']
+const protectedRoutes = [ '/employees', '/dashboard', '/qrcodecard', '/profileupdate/:path*', '/qrcode'  ]
+const publicRoutes = ['/auth/login', '/auth/signup', ]
  
 export default async function middleware(req) {
   // 2. Check if the current route is protected or public
