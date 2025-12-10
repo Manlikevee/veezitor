@@ -181,7 +181,7 @@ background-color: white;
 
 .avatarname{
     padding: 10px;
-    background-color: #FFF2EA;
+    background-color: #63B4FF1A;
     border-radius: 50%;
     font-family: Inter;
 font-size: 14px;
@@ -193,7 +193,7 @@ justify-content: center;
 font-weight: 600;
 line-height: 24px;
 text-align: center;
-color: #93312B;
+color: #4894FE;
 }
 
 .accflx{
@@ -222,7 +222,7 @@ text-align: center;
 
 }
 .inactive{
-    background-color: #FFF2EA;
+    background-color: #63B4FF1A;
     color: #F15046;
 width: fit-content;
 
@@ -1009,8 +1009,8 @@ transition: border-bottom-color 0.3s ease;
     padding: 6px;
 }
 .init{
-    background-color: #FFF2EA;
-    color: #93312B;
+    background-color: #63B4FF1A;
+    color: #4894FE;
     padding: 7px;
     text-transform: uppercase;
     width: fit-content;
@@ -1791,8 +1791,9 @@ width: 100%;
     
 }
 
-.mylss{
-    padding-top: 170px;  
+.mylss {
+    padding: 270px 0px 0 0;
+    padding-top: 30px;
 }
 .myform{
     max-height: 480px;

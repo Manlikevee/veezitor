@@ -40,7 +40,7 @@ const NewEmployeeForm = ({toggle, axiosInstance, fetchEmployeeData}) => {
     })
     .catch(error => {
       console.error('There was an error!', error);
-
+      toast.error(`Error Occurred: ${error.response?.data?.message || error.message}`);
       setIsloading(false)
     });
   };
