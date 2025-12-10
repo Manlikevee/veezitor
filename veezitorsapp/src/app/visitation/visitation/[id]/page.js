@@ -75,47 +75,59 @@ const page = () => {
           setIsLoading(false);
         }
       };
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const companyId = params.get('company_id');
-        const number =  params.get('phone_number');
-        setCompanyref(companyId)
-       
-        if (id) {
-            const fetchData = async () => {
-              try {
-                const response = await axios.get(`https://veezitorbackend.vercel.app/phonesearch?company_id=${companyId}&phone_number=${number}`);
-                
-                console.log('responseeee', response)
-                toast.success('successsssssss')
-                setCompanyData(response.data);
-                setWhoToSee(response.data.first_name + ' ' +  response.data.last_name)
-              } catch (error) {
-                if (error.response) {
-                  // Server responded with a status other than 200 range
-        
-                  toast.error(error.response.data.error)
-                
-                } else if (error.request) {
-                  // Request was made but no response received
-              
-         
-                  toast.error('No response received from the server.')
-                } else {
-                  // Something else happened in setting up the request
-       
-                 
-                  toast.error(error.message||'No response received from the server.')
-                }
-              }
-            };
-      
-            fetchData();
-          }
-      }, [id]);
+useEffect(() => {
+  if (!id) return;
+
+  const params = new URLSearchParams(window.location.search);
+
+  const companyId = params.get('company_id');
+  const phoneNumber = params.get('phone_number');
+  const ref = params.get('ref');
+
+  if (!companyId || (!phoneNumber && !ref)) {
+    toast.error('Invalid visitation link');
+    return;
+  }
+
+  setCompanyref(companyId);
+
+  const fetchEmployee = async () => {
+    try {
+      const response = await axios.get(
+        'https://veezitorbackend.vercel.app/phonesearch',
+        {
+          params: {
+            company_id: companyId,
+            phone_number: phoneNumber || undefined,
+            ref: ref || undefined,
+          },
+        }
+      );
+
+      setCompanyData(response.data);
+      setWhoToSee(
+        `${response.data.first_name} ${response.data.last_name}`
+      );
+
+      toast.success('Employee found');
+
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data?.error || 'Employee not found');
+      } else if (error.request) {
+        toast.error('No response received from server');
+      } else {
+        toast.error(error.message || 'Something went wrong');
+      }
+    }
+  };
+
+  fetchEmployee();
+
+}, [id]);
       return (
         <div className="container flex">
-          <div className="loginside nopadd">
+          <div className="loginside nopadd minimini">
             <div className="logindata">
               <br />
               <h6>Visitation Form</h6>
