@@ -6,6 +6,13 @@ import React, { useEffect, useState } from 'react';
 import { Toaster, toast } from 'sonner'
 import axios from 'axios';
 import { useParams } from 'next/navigation';
+import dynamic from 'next/dynamic';
+
+const DynamicQrcard = dynamic(() => import('@/components/qrcodecard/Linkqrcard'), {
+  ssr: false,
+});
+
+
 const page = () => {
   const router = useRouter()
   const { id } = useParams();
@@ -85,16 +92,23 @@ else{
              <small> To log your appointment, please provide the following:</small> */}
     </div>
     <div className="vizitordetails">
+
+      {visitationdata?.tag_id && visitationdata?.ref && visitationdata?.stage_3 && !visitationdata?.stage_4  ? (
+    <DynamicQrcard  data={`${visitationdata?.ref}`}  /> ) : (
       <div className="vizitorprofilephoto">
      
         <Image
          width={120}
          height={120}
          src='/man.png' alt="" />
+
+     
       </div>
 
+    ) }
+
       <div className="pdetails">
-        <h4> NAME:</h4>
+        <p> NAME:</p> 
         <p id="personname"> 
         {visitationdata?.first_name && visitationdata?.last_name 
     ? visitationdata.first_name + ' ' + visitationdata.last_name 

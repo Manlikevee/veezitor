@@ -18,7 +18,7 @@ const Qrcard = ({ data }) => {
           imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 3 },
           dotsOptions: { type: "extra-rounded", color: "#9a4c1e" },
           backgroundOptions: { color: "#ffffff" },
-          image: logo || 'InvestmentOneLogo.png' ,
+          // image: logo || 'InvestmentOneLogo.png' ,
           dotsOptionsHelper: {
             colorType: { single: true, gradient: false },
             gradient: {
@@ -79,7 +79,7 @@ const Qrcard = ({ data }) => {
             imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 0 },
             dotsOptions: { type: "extra-rounded", color: "#9a4c1e" },
             backgroundOptions: { color: "#ffffff" },
-            image: "InvestmentOneLogo.png",
+            // image: "InvestmentOneLogo.png",
             dotsOptionsHelper: {
               colorType: { single: true, gradient: false },
               gradient: {

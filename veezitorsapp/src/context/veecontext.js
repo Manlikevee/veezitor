@@ -401,6 +401,33 @@ if (ref){
       });
   };
 
+
+  const [profile, setProfile] = useState(null);
+  const [loadingProfile, setLoadingProfile] = useState(true);
+
+    async function fetchProfile() {
+    try {
+      setLoadingProfile(true);
+      const response = await axiosInstance.get("/userprofile/");
+      // console.log("it rannnn", response.data);
+      setProfile(response?.data);
+      // console.log('response?.data?.company_obj', response?.data?.company_obj)
+      setLoadingProfile(false);
+      console.log('profile done')
+      return response.data;
+    } catch (error) {
+     setLoadingProfile(false);
+      if (axios.isAxiosError(error) && error.response?.status === 404) {
+        console.error("An error occurred: Profile not found.");
+        setError(true);
+      } else {
+        console.error(`An error occurred: ${error.message}`);
+      }
+    }
+  };
+
+
+
   const fetchvisitors = () => {
     const accessToken = Cookies.get("access_token");
     if (accessToken) {
@@ -504,6 +531,7 @@ if (ref){
       try {
         setLoading(true);
         const response = await axiosInstance.get("/Dashboard");
+        fetchProfile();
         console.log("it rannnn", response.data); // Assuming the response data contains useful 
         setEmployee(response?.data?.employee_data);
         setIntegrations(response?.data?.integration);
@@ -742,7 +770,12 @@ if (ref){
         Uniquevisitors, 
         setUniquevisitors,
         monthlyvisitors,
-        loadingmonthlyvisitors
+        loadingmonthlyvisitors,
+          loadingProfile, 
+        setLoadingProfile,
+        profile, 
+        setProfile,
+        fetchProfile,
       }}
     >
       {children}

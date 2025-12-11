@@ -19,7 +19,14 @@ const DynamicQrcard = dynamic(() => import('../../components/Userqrpop'), {
   ssr: false,
 });
 const page = () => {
-  const {visitordataloaded, isOpen, test, setTest, companySetup, fetchvisitors,  acceptvisitor, visitors , awaiting, pendingApproval, reshedule, inProgress, employeedataloaded, togglevisitorbar } = useContext(VeeContext);
+  const {visitordataloaded, isOpen, test, setTest, companySetup, fetchvisitors,  acceptvisitor, visitors , awaiting, pendingApproval, reshedule, inProgress, employeedataloaded, togglevisitorbar,
+  loadingProfile, 
+        setLoadingProfile,
+        profile, 
+        setProfile,
+        fetchProfile,
+
+   } = useContext(VeeContext);
   const [firstName, setFirstName] = useState("");
   const [myArray, setMyArray] = useState([]);
   const [activeTag, setActiveTag] = useState("allEmployeesContent");
@@ -27,25 +34,40 @@ const page = () => {
   const [activepop, setactivepop] = useState(false);
   const [myurl, setmyurl] = useState("");
 
-  const copyToClipboard = async () => {
+const copyToClipboard = async () => {
+  try {
+    const accessdatatoken = Cookies.get('userdata_token');
+    const decodedToken = jwtDecode(accessdatatoken);
 
-    try {
-      const accessdatatoken = Cookies.get('userdata_token');
-      const decodedToken = jwtDecode(accessdatatoken);
-      const textToCopy = `${window.location.protocol}//${window.location.host}/visitation/newvisitation/${decodedToken?.data?.ref}`
-      await navigator.clipboard.writeText(textToCopy);
-      setmyurl(textToCopy);
-      handlymysow();
-     
- toast.success('Copied To Clipboard')
-    } catch (err) {
-     
-      toast.err('Failed to copy!')
+    const profiledata = profile || {};
+    const staff_id = profiledata?.employee_detail?.staff_id || null;
+
+    // --------------------------------------------------
+    // BUILD THE URL
+    // --------------------------------------------------
+    let textToCopy;
+
+    if (staff_id && myqrcodeurl) {
+      // Staff-specific visitation link
+      textToCopy = `https://veezitor.vercel.app/visitation/visitation/4022059937?company_id=${myqrcodeurl}&ref=${staff_id}`;
+    } else {
+      // Default new visitation link
+      textToCopy = `${window.location.protocol}//${window.location.host}/visitation/newvisitation/${decodedToken?.data?.ref}`;
     }
 
-    // Reset the message after a short delay
+    // Copy to clipboard
+    await navigator.clipboard.writeText(textToCopy);
 
-  };
+    setmyurl(textToCopy);
+    handlymysow();
+
+    toast.success('Copied To Clipboard');
+  } catch (err) {
+    console.error(err);
+    toast.error('Failed to copy!');
+  }
+};
+
 
 
   function handlymysow(){
