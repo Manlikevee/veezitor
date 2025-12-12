@@ -85,10 +85,10 @@ const page = () => {
       console.error('Failed to get token:', error);
     }
   };
-
+ 
   useEffect(() => {
     setMyUrl();
-  }, []);
+  }, [profile]);
 
 
 
