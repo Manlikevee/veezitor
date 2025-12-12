@@ -46,7 +46,7 @@ const copyToClipboard = async () => {
     // BUILD THE URL
     // --------------------------------------------------
     let textToCopy;
-
+    const myqrcodeurl = decodedToken?.data?.ref
     if (staff_id && myqrcodeurl) {
       // Staff-specific visitation link
       textToCopy = `https://veezitor.vercel.app/visitation/visitation/4022059937?company_id=${myqrcodeurl}&ref=${staff_id}`;
