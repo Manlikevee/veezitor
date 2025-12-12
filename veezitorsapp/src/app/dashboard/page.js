@@ -33,40 +33,60 @@ const page = () => {
   const [username, setUsername] = useState("");
   const [activepop, setactivepop] = useState(false);
   const [myurl, setmyurl] = useState("");
+  const [myqrcodeurl, setQrcodeurl] = useState(null);
+  const [companydata, setCompanyData] = useState({});
+  const copyToClipboard = async () => {
+    try {
+      const accessdatatoken = Cookies.get('userdata_token');
+      const decodedToken = jwtDecode(accessdatatoken);
 
-const copyToClipboard = async () => {
-  try {
-    const accessdatatoken = Cookies.get('userdata_token');
-    const decodedToken = jwtDecode(accessdatatoken);
+      const profiledata = profile || {};
+      const staff_id = profiledata?.employee_detail?.staff_id || null;
 
-    const profiledata = profile || {};
-    const staff_id = profiledata?.employee_detail?.staff_id || null;
+      // --------------------------------------------------
+      // BUILD THE URL
+      // --------------------------------------------------
+      let textToCopy;
 
-    // --------------------------------------------------
-    // BUILD THE URL
-    // --------------------------------------------------
-    let textToCopy;
-    const myqrcodeurl = decodedToken?.data?.ref
-    if (staff_id && myqrcodeurl) {
-      // Staff-specific visitation link
-      textToCopy = `https://veezitor.vercel.app/visitation/visitation/4022059937?company_id=${myqrcodeurl}&ref=${staff_id}`;
-    } else {
-      // Default new visitation link
-      textToCopy = `${window.location.protocol}//${window.location.host}/visitation/newvisitation/${decodedToken?.data?.ref}`;
+      if (staff_id && myqrcodeurl) {
+        // Staff-specific visitation link
+        textToCopy = `https://veezitor.vercel.app/visitation/visitation/4022059937?company_id=${myqrcodeurl}&ref=${staff_id}`;
+      } else {
+        // Default new visitation link
+        textToCopy = `${window.location.protocol}//${window.location.host}/visitation/newvisitation/${decodedToken?.data?.ref}`;
+      }
+
+      // Copy to clipboard
+      await navigator.clipboard.writeText(textToCopy);
+
+      setmyurl(textToCopy);
+      handlymysow();
+
+      toast.success('Copied To Clipboard');
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to copy!');
     }
+  };
 
-    // Copy to clipboard
-    await navigator.clipboard.writeText(textToCopy);
 
-    setmyurl(textToCopy);
-    handlymysow();
+    const setMyUrl = async () => {
+    try {
+      const accessdatatoken = Cookies.get('userdata_token');
+      const token = jwtDecode(accessdatatoken);
+      if (token) {
+        const parsed = jwtDecode(token);
+        setCompanyData(parsed?.data || {});
+        setQrcodeurl(parsed?.data?.ref || null);
+      }
+    } catch (error) {
+      console.error('Failed to get token:', error);
+    }
+  };
 
-    toast.success('Copied To Clipboard');
-  } catch (err) {
-    console.error(err);
-    toast.error('Failed to copy!');
-  }
-};
+  useEffect(() => {
+    setMyUrl();
+  }, []);
 
 
 
