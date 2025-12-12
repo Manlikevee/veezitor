@@ -78,6 +78,8 @@ const page = () => {
         const parsed = jwtDecode(token);
         setCompanyData(parsed?.data || {});
         setQrcodeurl(parsed?.data?.ref || null);
+        console.log('myqrccodeurl', parsed?.data?.ref || null);
+        copyToClipboard();
       }
     } catch (error) {
       console.error('Failed to get token:', error);
