@@ -17,6 +17,7 @@ const page = () => {
   const router = useRouter()
   const { id } = useParams();
   const [visitationdata, setVisitationdata] = useState([]);
+  const [queieposition, setQueueposition] = useState(null);
 
   function toTitleCase(str) {
     if(str){
@@ -50,6 +51,7 @@ else{
             if(response.status == 200){
               console.log('responseeee', response)
               setVisitationdata(response.data?.visitorsdata)
+              setQueueposition(response.data?.queue_position)
               toast.success('Visitation details Fetched Successfully')
             }
 
@@ -129,6 +131,18 @@ else{
     : 'loading'}
           </div>
         </div>
+
+{ queieposition && !visitationdata?.tag_id && (
+          <div className="vflex">
+          <div className="vtitle">Queue Position</div>
+          <div className="vnotitle" id="visitstatus">
+               {queieposition}
+          </div>
+        </div>
+)
+}
+
+
       </div>
 
       <div className="foot">
