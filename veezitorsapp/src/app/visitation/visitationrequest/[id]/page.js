@@ -134,7 +134,7 @@ else{
 
 { queieposition && !visitationdata?.tag_id && (
           <div className="vflex">
-          <div className="vtitle">Queue Position</div>
+          <div className="vtitle">Queue Pos</div>
           <div className="vnotitle" id="visitstatus">
                {queieposition}
           </div>
