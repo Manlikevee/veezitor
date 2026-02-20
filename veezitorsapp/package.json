@@ -25,7 +25,7 @@
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "material-symbols": "^0.17.4",
-    "next": "14.2.3",
+    "next": "14.2.35",
     "qr-code-styling": "^1.6.0-rc.1",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
